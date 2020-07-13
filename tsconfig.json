@@ -4,6 +4,7 @@
     "declaration": true,
     "declarationDir": "./lib/typings/",
     "declarationMap": true,
+    "downlevelIteration": true,
     "esModuleInterop": true,
     "lib": ["ES2015"],
     "module": "commonjs",
@@ -15,5 +16,5 @@
   },
   "files": ["./src/index.ts"],
   "include": ["./src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/**/*.test.ts"]
 }

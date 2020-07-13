@@ -231,6 +231,7 @@ export class SingleLinkedList<T> {
 
     return this;
   }
+
   /**
    * Updates the value of a node on a
    * provided position
@@ -268,20 +269,14 @@ export class SingleLinkedList<T> {
     if (this.size < 2) {
       this.head = null;
       this.tail = null;
-      this.size = Math.max(0, --this.size);
-
-      return node;
+      this.size = 0;
     } else {
       this.head = this.head.next;
       node.next = null;
-      if (this.size === 2) {
-        this.tail = this.head;
-      }
-
       this.size--;
-
-      return node;
     }
+
+    return node;
   }
 
   /**
