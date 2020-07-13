@@ -8,7 +8,7 @@ class ListNode<T> {
   }
 }
 
-export class SingleLinkedList<T> {
+export class SinglyLinkedList<T> {
   head: ListNode<T> | null;
   tail: ListNode<T> | null;
   size: number;
@@ -29,7 +29,7 @@ export class SingleLinkedList<T> {
   }
 
   /**
-   * Creates a SingleLinkedList from
+   * Creates a SinglyLinkedList from
    * an array
    *
    * Time complexity: O(n)
@@ -37,11 +37,11 @@ export class SingleLinkedList<T> {
    *
    * @param {Array<P>} array
    *
-   * @returns {SingleLinkedList<P>}
+   * @returns {SinglyLinkedList<P>}
    *
    */
-  public static fromArray<P>(array: Array<P>): SingleLinkedList<P> {
-    const list = new SingleLinkedList<P>();
+  public static fromArray<P>(array: Array<P>): SinglyLinkedList<P> {
+    const list = new SinglyLinkedList<P>();
 
     array.forEach((value) => {
       list.push(value);
@@ -217,9 +217,9 @@ export class SingleLinkedList<T> {
    * Time complexity: O(n)
    * Space complexity: O(1)
    *
-   * @returns {SingleLinkedList<T>}
+   * @returns {SinglyLinkedList<T>}
    */
-  public reverse(): SingleLinkedList<T> {
+  public reverse(): SinglyLinkedList<T> {
     if (this.size < 2) {
       return this;
     }

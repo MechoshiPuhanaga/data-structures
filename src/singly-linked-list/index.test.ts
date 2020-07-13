@@ -1,14 +1,14 @@
-import { SingleLinkedList } from "./index";
+import { SinglyLinkedList } from "./index";
 
-let sll: SingleLinkedList<number>;
+let sll: SinglyLinkedList<number>;
 
-describe("SingleLinkedList", () => {
+describe("SinglyLinkedList", () => {
   beforeEach(() => {
-    sll = new SingleLinkedList<number>();
+    sll = new SinglyLinkedList<number>();
   });
 
   test("Constrictor creates right instance", () => {
-    expect(sll).toBeInstanceOf(SingleLinkedList);
+    expect(sll).toBeInstanceOf(SinglyLinkedList);
     expect(sll).toHaveProperty("head", null);
     expect(sll).toHaveProperty("size", 0);
     expect(sll).toHaveProperty("tail", null);
@@ -23,7 +23,7 @@ describe("SingleLinkedList", () => {
   });
 
   test("static fromArray", () => {
-    sll = SingleLinkedList.fromArray([1, 2, 3]);
+    sll = SinglyLinkedList.fromArray([1, 2, 3]);
 
     expect(sll.toString()).toBe("1->2->3");
   });

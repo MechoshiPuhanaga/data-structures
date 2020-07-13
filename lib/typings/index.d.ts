@@ -1,2 +1,2 @@
-export * from "./single-linked-list/index";
+export * from "./singly-linked-list/index";
 //# sourceMappingURL=index.d.ts.map

@@ -3,14 +3,14 @@ declare class ListNode<T> {
     value: T;
     constructor(value: T);
 }
-export declare class SingleLinkedList<T> {
+export declare class SinglyLinkedList<T> {
     head: ListNode<T> | null;
     tail: ListNode<T> | null;
     size: number;
     constructor();
     [Symbol.iterator](): Generator<T, void, unknown>;
     /**
-     * Creates a SingleLinkedList from
+     * Creates a SinglyLinkedList from
      * an array
      *
      * Time complexity: O(n)
@@ -18,10 +18,10 @@ export declare class SingleLinkedList<T> {
      *
      * @param {Array<P>} array
      *
-     * @returns {SingleLinkedList<P>}
+     * @returns {SinglyLinkedList<P>}
      *
      */
-    static fromArray<P>(array: Array<P>): SingleLinkedList<P>;
+    static fromArray<P>(array: Array<P>): SinglyLinkedList<P>;
     /**
      * Retrieves the node at given index
      *
@@ -92,9 +92,9 @@ export declare class SingleLinkedList<T> {
      * Time complexity: O(n)
      * Space complexity: O(1)
      *
-     * @returns {SingleLinkedList<T>}
+     * @returns {SinglyLinkedList<T>}
      */
-    reverse(): SingleLinkedList<T>;
+    reverse(): SinglyLinkedList<T>;
     /**
      * Updates the value of a node on a
      * provided position
