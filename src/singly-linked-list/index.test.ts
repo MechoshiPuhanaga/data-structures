@@ -177,7 +177,7 @@ describe("SinglyLinkedList", () => {
     expect(sll).toHaveProperty("size", 3);
   });
 
-  test("set", () => {
+  test("reverse", () => {
     sll.push(1);
     expect(sll.reverse().toString()).toBe("1");
 
