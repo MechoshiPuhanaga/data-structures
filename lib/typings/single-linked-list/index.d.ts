@@ -8,6 +8,20 @@ export declare class SingleLinkedList<T> {
     tail: ListNode<T> | null;
     size: number;
     constructor();
+    [Symbol.iterator](): Generator<T, void, unknown>;
+    /**
+     * Creates a SingleLinkedList from
+     * an array
+     *
+     * Time complexity: O(n)
+     * Space complexity: O(n)
+     *
+     * @param {Array<P>} array
+     *
+     * @returns {SingleLinkedList<P>}
+     *
+     */
+    static fromArray<P>(array: Array<P>): SingleLinkedList<P>;
     /**
      * Retrieves the element at given index
      *
@@ -92,6 +106,14 @@ export declare class SingleLinkedList<T> {
      * @returns {ListNode<T> | null}
      */
     shift(): ListNode<T> | null;
+    /**
+     * Overrides the generic toString method
+     *
+     * Time complexity: O(n)
+     * Space complexity: O(n)
+     *
+     */
+    toString(): string;
     /**
      * Adds a new node to the beginning of the list
      *

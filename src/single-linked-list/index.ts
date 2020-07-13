@@ -19,6 +19,37 @@ export class SingleLinkedList<T> {
     this.tail = null;
   }
 
+  *[Symbol.iterator]() {
+    let current = this.head;
+
+    while (current) {
+      yield current.value;
+      current = current.next;
+    }
+  }
+
+  /**
+   * Creates a SingleLinkedList from
+   * an array
+   *
+   * Time complexity: O(n)
+   * Space complexity: O(n)
+   *
+   * @param {Array<P>} array
+   *
+   * @returns {SingleLinkedList<P>}
+   *
+   */
+  public static fromArray<P>(array: Array<P>): SingleLinkedList<P> {
+    const list = new SingleLinkedList<P>();
+
+    array.forEach((value) => {
+      list.push(value);
+    });
+
+    return list;
+  }
+
   /**
    * Retrieves the element at given index
    *
@@ -251,6 +282,29 @@ export class SingleLinkedList<T> {
 
       return node;
     }
+  }
+
+  /**
+   * Overrides the generic toString method
+   *
+   * Time complexity: O(n)
+   * Space complexity: O(n)
+   *
+   */
+  public toString(): string {
+    let output = "";
+    let current = this.head;
+
+    while (current) {
+      output += current.value;
+      current = current.next;
+
+      if (current) {
+        output += "->";
+      }
+    }
+
+    return output;
   }
 
   /**

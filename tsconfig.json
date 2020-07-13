@@ -5,6 +5,7 @@
     "declarationDir": "./lib/typings/",
     "declarationMap": true,
     "esModuleInterop": true,
+    "lib": ["ES2015"],
     "module": "commonjs",
     "noImplicitAny": true,
     "outDir": "./lib/",
