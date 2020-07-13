@@ -23,7 +23,7 @@ export declare class SingleLinkedList<T> {
      */
     static fromArray<P>(array: Array<P>): SingleLinkedList<P>;
     /**
-     * Retrieves the element at given index
+     * Retrieves the node at given index
      *
      * Time complexity: O(n)
      * Space complexity: O(1)
@@ -32,7 +32,18 @@ export declare class SingleLinkedList<T> {
      *
      * @returns {ListNode<T> | null}
      */
-    get(index: number): ListNode<T> | null;
+    private getNode;
+    /**
+     * Retrieves the element at given index
+     *
+     * Time complexity: O(n)
+     * Space complexity: O(1)
+     *
+     * @param {number} index
+     *
+     * @returns {T | null}
+     */
+    get(index: number): T | null;
     /**
      * Inserts a new node on a specified position
      *
@@ -51,9 +62,9 @@ export declare class SingleLinkedList<T> {
      * Time complexity: O(n)
      * Space complexity: O(1)
      *
-     * @returns {ListNode<T> | null}
+     * @returns {T | null}
      */
-    pop(): ListNode<T> | null;
+    pop(): T | null;
     /**
      * Adds a node to the end of the list
      *
@@ -72,9 +83,9 @@ export declare class SingleLinkedList<T> {
      *
      * @param {number} index
      *
-     * @returns {ListNode<T> | null}
+     * @returns {T | null}
      */
-    remove(index: number): ListNode<T> | null;
+    remove(index: number): T | null;
     /**
      * Reverses the list
      *
@@ -103,9 +114,9 @@ export declare class SingleLinkedList<T> {
      * Time complexity: O(1)
      * Space complexity: O(1)
      *
-     * @returns {ListNode<T> | null}
+     * @returns {T | null}
      */
-    shift(): ListNode<T> | null;
+    shift(): T | null;
     /**
      * Overrides the generic toString method
      *

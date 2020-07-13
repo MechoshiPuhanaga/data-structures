@@ -51,7 +51,7 @@ export class SingleLinkedList<T> {
   }
 
   /**
-   * Retrieves the element at given index
+   * Retrieves the node at given index
    *
    * Time complexity: O(n)
    * Space complexity: O(1)
@@ -60,7 +60,7 @@ export class SingleLinkedList<T> {
    *
    * @returns {ListNode<T> | null}
    */
-  public get(index: number): ListNode<T> | null {
+  private getNode(index: number): ListNode<T> | null {
     if (index < 0 || index > this.size - 1 || this.size === 0) {
       return null;
     }
@@ -72,6 +72,22 @@ export class SingleLinkedList<T> {
     }
 
     return current;
+  }
+
+  /**
+   * Retrieves the element at given index
+   *
+   * Time complexity: O(n)
+   * Space complexity: O(1)
+   *
+   * @param {number} index
+   *
+   * @returns {T | null}
+   */
+  public get(index: number): T | null {
+    const node = this.getNode(index);
+
+    return node ? node.value : null;
   }
 
   /**
@@ -98,7 +114,7 @@ export class SingleLinkedList<T> {
       return !!this.unshift(value);
     }
 
-    const previous = this.get(index - 1);
+    const previous = this.getNode(index - 1);
 
     const newNode = new ListNode<T>(value);
     newNode.next = previous.next;
@@ -114,16 +130,16 @@ export class SingleLinkedList<T> {
    * Time complexity: O(n)
    * Space complexity: O(1)
    *
-   * @returns {ListNode<T> | null}
+   * @returns {T | null}
    */
-  public pop(): ListNode<T> | null {
+  public pop(): T | null {
     if (this.size < 2) {
       const node = this.head;
       this.head = null;
       this.tail = null;
       this.size = Math.max(0, --this.size);
 
-      return node;
+      return node ? node.value : null;
     } else {
       let current = this.head;
       let next = current.next;
@@ -137,7 +153,7 @@ export class SingleLinkedList<T> {
       current.next = null;
       this.size--;
 
-      return next;
+      return next.value;
     }
   }
 
@@ -172,9 +188,9 @@ export class SingleLinkedList<T> {
    *
    * @param {number} index
    *
-   * @returns {ListNode<T> | null}
+   * @returns {T | null}
    */
-  public remove(index: number): ListNode<T> | null {
+  public remove(index: number): T | null {
     if (index < 0 || index >= this.size) {
       return null;
     }
@@ -187,12 +203,12 @@ export class SingleLinkedList<T> {
       return this.pop();
     }
 
-    const previous = this.get(index - 1);
+    const previous = this.getNode(index - 1);
     const toBeRemoved = previous.next;
     previous.next = toBeRemoved.next;
     toBeRemoved.next = null;
     this.size--;
-    return toBeRemoved;
+    return toBeRemoved.value;
   }
 
   /**
@@ -245,7 +261,7 @@ export class SingleLinkedList<T> {
    * @returns {boolean}
    */
   public set(value: T, index: number): boolean {
-    const node = this.get(index);
+    const node = this.getNode(index);
 
     if (node) {
       node.value = value;
@@ -261,9 +277,9 @@ export class SingleLinkedList<T> {
    * Time complexity: O(1)
    * Space complexity: O(1)
    *
-   * @returns {ListNode<T> | null}
+   * @returns {T | null}
    */
-  public shift(): ListNode<T> | null {
+  public shift(): T | null {
     const node = this.head;
 
     if (this.size < 2) {
@@ -276,7 +292,7 @@ export class SingleLinkedList<T> {
       this.size--;
     }
 
-    return node;
+    return node ? node.value : null;
   }
 
   /**

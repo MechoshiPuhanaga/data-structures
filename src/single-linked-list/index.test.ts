@@ -46,22 +46,25 @@ describe("SingleLinkedList", () => {
     sll.push(3);
 
     let node = sll.pop();
-    expect(node).toHaveProperty("value", 3);
+    expect(node).toBe(3);
     expect(sll).toHaveProperty("size", 2);
     expect(sll.head).toHaveProperty("value", 1);
     expect(sll.tail).toHaveProperty("value", 2);
 
     node = sll.pop();
-    expect(node).toHaveProperty("value", 2);
+    expect(node).toBe(2);
     expect(sll).toHaveProperty("size", 1);
     expect(sll.head).toHaveProperty("value", 1);
     expect(sll.tail).toHaveProperty("value", 1);
 
     node = sll.pop();
-    expect(node).toHaveProperty("value", 1);
+    expect(node).toBe(1);
     expect(sll).toHaveProperty("size", 0);
     expect(sll).toHaveProperty("head", null);
     expect(sll).toHaveProperty("tail", null);
+
+    node = sll.pop();
+    expect(node).toBe(null);
   });
 
   test("unshift", () => {
@@ -81,16 +84,19 @@ describe("SingleLinkedList", () => {
     sll.unshift(2);
 
     let node = sll.shift();
-    expect(node).toHaveProperty("value", 2);
+    expect(node).toBe(2);
     expect(sll).toHaveProperty("size", 1);
     expect(sll.head).toHaveProperty("value", 1);
     expect(sll.tail).toHaveProperty("value", 1);
 
     node = sll.shift();
-    expect(node).toHaveProperty("value", 1);
+    expect(node).toBe(1);
     expect(sll).toHaveProperty("size", 0);
     expect(sll).toHaveProperty("head", null);
     expect(sll).toHaveProperty("tail", null);
+
+    node = sll.shift();
+    expect(node).toBe(null);
   });
 
   test("toString", () => {
@@ -110,9 +116,9 @@ describe("SingleLinkedList", () => {
     expect(sll.get(-1)).toBe(null);
     expect(sll.get(3)).toBe(null);
 
-    expect(sll.get(0)).toHaveProperty("value", 1);
-    expect(sll.get(1)).toHaveProperty("value", 2);
-    expect(sll.get(2)).toHaveProperty("value", 3);
+    expect(sll.get(0)).toBe(1);
+    expect(sll.get(1)).toBe(2);
+    expect(sll.get(2)).toBe(3);
   });
 
   test("insert", () => {
@@ -144,13 +150,13 @@ describe("SingleLinkedList", () => {
     expect(sll.remove(-1)).toBe(null);
     expect(sll.remove(4)).toBe(null);
 
-    expect(sll.remove(1)).toHaveProperty("value", 2);
+    expect(sll.remove(1)).toBe(2);
     expect(sll).toHaveProperty("size", 2);
 
-    expect(sll.remove(1)).toHaveProperty("value", 3);
+    expect(sll.remove(1)).toBe(3);
     expect(sll).toHaveProperty("size", 1);
 
-    expect(sll.remove(0)).toHaveProperty("value", 1);
+    expect(sll.remove(0)).toBe(1);
     expect(sll).toHaveProperty("size", 0);
   });
 
