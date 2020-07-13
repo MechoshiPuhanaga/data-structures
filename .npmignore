@@ -1,0 +1,12 @@
+.vscode
+coverage
+node_modules
+src
+.babelrc
+.gitignore
+jest.config.js
+playground.js
+tsconfig.json
+typedoc.json
+yarn.lock
+
