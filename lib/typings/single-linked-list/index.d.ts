@@ -9,26 +9,72 @@ export declare class SingleLinkedList<T> {
     size: number;
     constructor();
     /**
+     * Retrieves the element at given index
+     *
+     * Time complexity: O(n)
+     * Space complexity: O(1)
+     *
+     * @param {number} index
+     *
+     * @returns {ListNode<T> | null}
+     */
+    get(index: number): ListNode<T> | null;
+    /**
+     * Inserts a new node on a specified position
+     *
+     * Time complexity: O(n)
+     * Space complexity: O(1)
+     *
+     * @param {T} value
+     * @param {number} index
+     *
+     * @returns {boolean}
+     */
+    insert(value: T, index: number): boolean;
+    /**
+     * Removes a node from the end of the list
+     *
+     * Time complexity: O(n)
+     * Space complexity: O(1)
+     *
+     * @returns {ListNode<T> | null}
+     */
+    pop(): ListNode<T> | null;
+    /**
      * Adds a node to the end of the list
      *
-     * Time complexity: 0(1)
+     * Time complexity: O(1)
+     * Space complexity: O(1)
      *
      * @param {T} - the value to be added
      * @returns {number} - the updated size of the list
      */
     push(value: T): number;
     /**
-     * Removes a node from the end of the list
+     *  Removes a node at specified position
      *
-     * Time complexity: 0(n)
+     * @param {number} index
      *
-     * @returns {ListNode<T> | null}
      */
-    pop(): ListNode<T> | null;
+    remove(index: number): boolean;
+    /**
+     * Updates the value of a node on a
+     * provided position
+     *
+     * Time complexity: O(n)
+     * Space complexity: O(1)
+     *
+     * @param {T} value
+     * @param {number} index
+     *
+     * @returns {boolean}
+     */
+    set(value: T, index: number): boolean;
     /**
      * Removes a node from the beginning of the list
      *
-     * Time complexity: 0(1)
+     * Time complexity: O(1)
+     * Space complexity: O(1)
      *
      * @returns {ListNode<T> | null}
      */
@@ -36,7 +82,8 @@ export declare class SingleLinkedList<T> {
     /**
      * Adds a new node to the beginning of the list
      *
-     * Time complexity: 0(1)
+     * Time complexity: O(1)
+     * Space complexity: O(1)
      *
      * @returns {number} - the updated size of the list
      */

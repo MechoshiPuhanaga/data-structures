@@ -20,31 +20,68 @@ export class SingleLinkedList<T> {
   }
 
   /**
-   * Adds a node to the end of the list
+   * Retrieves the element at given index
    *
-   * Time complexity: 0(1)
+   * Time complexity: O(n)
+   * Space complexity: O(1)
    *
-   * @param {T} - the value to be added
-   * @returns {number} - the updated size of the list
+   * @param {number} index
+   *
+   * @returns {ListNode<T> | null}
    */
-  public push(value: T): number {
-    const newNode = new ListNode(value);
-
-    if (this.size === 0) {
-      this.head = newNode;
-      this.tail = newNode;
-    } else {
-      this.tail.next = newNode;
-      this.tail = newNode;
+  public get(index: number): ListNode<T> | null {
+    if (index < 0 || index > this.size - 1 || this.size === 0) {
+      return null;
     }
 
-    return ++this.size;
+    let current = this.head;
+    while (index > 0) {
+      current = current.next;
+      index--;
+    }
+
+    return current;
+  }
+
+  /**
+   * Inserts a new node on a specified position
+   *
+   * Time complexity: O(n)
+   * Space complexity: O(1)
+   *
+   * @param {T} value
+   * @param {number} index
+   *
+   * @returns {boolean}
+   */
+  public insert(value: T, index: number): boolean {
+    if (index < 0 || index > this.size) {
+      return false;
+    }
+
+    if (index === this.size) {
+      return !!this.push(value);
+    }
+
+    if (index === 0) {
+      return !!this.unshift(value);
+    }
+
+    const previous = this.get(index - 1);
+
+    const newNode = new ListNode<T>(value);
+    newNode.next = previous.next;
+    previous.next = newNode;
+    this.size++;
+
+    return true;
   }
 
   /**
    * Removes a node from the end of the list
    *
-   * Time complexity: 0(n)
+   * Time complexity: O(n)
+   * Space complexity: O(1)
    *
    * @returns {ListNode<T> | null}
    */
@@ -74,9 +111,66 @@ export class SingleLinkedList<T> {
   }
 
   /**
+   * Adds a node to the end of the list
+   *
+   * Time complexity: O(1)
+   * Space complexity: O(1)
+   *
+   * @param {T} - the value to be added
+   * @returns {number} - the updated size of the list
+   */
+  public push(value: T): number {
+    const newNode = new ListNode(value);
+
+    if (this.size === 0) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+
+    return ++this.size;
+  }
+
+  /**
+   *  Removes a node at specified position
+   *
+   * @param {number} index
+   *
+   */
+  public remove(index: number): boolean {
+    return false;
+  }
+
+  /**
+   * Updates the value of a node on a
+   * provided position
+   *
+   * Time complexity: O(n)
+   * Space complexity: O(1)
+   *
+   * @param {T} value
+   * @param {number} index
+   *
+   * @returns {boolean}
+   */
+  public set(value: T, index: number): boolean {
+    const node = this.get(index);
+
+    if (node) {
+      node.value = value;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /**
    * Removes a node from the beginning of the list
    *
-   * Time complexity: 0(1)
+   * Time complexity: O(1)
+   * Space complexity: O(1)
    *
    * @returns {ListNode<T> | null}
    */
@@ -105,7 +199,8 @@ export class SingleLinkedList<T> {
   /**
    * Adds a new node to the beginning of the list
    *
-   * Time complexity: 0(1)
+   * Time complexity: O(1)
+   * Space complexity: O(1)
    *
    * @returns {number} - the updated size of the list
    */
