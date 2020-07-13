@@ -88,6 +88,15 @@ export declare class DoublyLinkedList<T> {
      */
     remove(index: number): T | null;
     /**
+     * Reverses the list
+     *
+     * Time complexity: O(n)
+     * Space complexity: O(1)
+     *
+     * @returns {DoublyLinkedList<T>}
+     */
+    reverse(): DoublyLinkedList<T>;
+    /**
      * Updates the value of a node on a
      * provided position
      *

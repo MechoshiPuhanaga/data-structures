@@ -222,6 +222,40 @@ export class DoublyLinkedList<T> {
   }
 
   /**
+   * Reverses the list
+   *
+   * Time complexity: O(n)
+   * Space complexity: O(1)
+   *
+   * @returns {DoublyLinkedList<T>}
+   */
+  public reverse(): DoublyLinkedList<T> {
+    if (this.size < 2) {
+      return this;
+    }
+
+    let current = this.tail;
+    let temp = null;
+    let counter = this.size - 1;
+
+    while (counter >= 0) {
+      temp = current.prev;
+
+      current.prev = current.next;
+      current.next = temp;
+
+      current = temp;
+      counter--;
+    }
+
+    const head = this.head;
+    this.head = this.tail;
+    this.tail = head;
+
+    return this;
+  }
+
+  /**
    * Updates the value of a node on a
    * provided position
    *

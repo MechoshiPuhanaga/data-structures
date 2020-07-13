@@ -176,4 +176,19 @@ describe("DoublyLinkedList", () => {
 
     expect(dll).toHaveProperty("size", 3);
   });
+
+  test("reverse", () => {
+    dll.push(1);
+    expect(dll.reverse().toString()).toBe("1");
+
+    dll.push(2);
+    dll.push(3);
+    dll.push(4);
+    dll.push(5);
+
+    expect(dll.toString()).toBe("1<>2<>3<>4<>5");
+
+    dll.reverse();
+    expect(dll.toString()).toBe("5<>4<>3<>2<>1");
+  });
 });

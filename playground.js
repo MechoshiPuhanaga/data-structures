@@ -1,11 +1,14 @@
-import { SinglyLinkedList } from "./lib/singly-linked-list";
+import { DoublyLinkedList } from "./lib/doubly-linked-list";
 
-const sll = new SinglyLinkedList();
-sll.push(1);
-sll.push(2);
-sll.push(3);
-sll.push(4);
-sll.push(5);
-sll.push(6);
+const dll = new DoublyLinkedList();
+dll.push(1);
+dll.push(2);
+dll.push(3);
+dll.push(4);
+dll.push(5);
+dll.push(6);
 
-console.log(SinglyLinkedList.fromArray(["a", "b", "c"]).reverse().toString());
+console.log([...DoublyLinkedList.fromArray([...dll]).reverse()]);
+console.log(
+  DoublyLinkedList.fromArray(["a", "b", "c", "d", "e"]).reverse().toString()
+);
