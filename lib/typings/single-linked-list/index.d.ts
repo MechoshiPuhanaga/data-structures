@@ -51,12 +51,25 @@ export declare class SingleLinkedList<T> {
      */
     push(value: T): number;
     /**
-     *  Removes a node at specified position
+     * Removes a node at specified position
+     *
+     * Time complexity: O(n)
+     * Space complexity: O(1)
      *
      * @param {number} index
      *
+     * @returns {ListNode<T> | null}
      */
-    remove(index: number): boolean;
+    remove(index: number): ListNode<T> | null;
+    /**
+     * Reverses the list
+     *
+     * Time complexity: O(n)
+     * Space complexity: O(1)
+     *
+     * @returns {SingleLinkedList<T>}
+     */
+    reverse(): SingleLinkedList<T>;
     /**
      * Updates the value of a node on a
      * provided position

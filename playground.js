@@ -5,6 +5,4 @@ sll.push(4);
 sll.push(5);
 sll.push(6);
 
-console.dir(sll.get(0));
-console.dir(sll.insert(7, 3));
-console.dir(sll.get(0));
+console.dir(sll.reverse());

@@ -134,15 +134,72 @@ export class SingleLinkedList<T> {
   }
 
   /**
-   *  Removes a node at specified position
+   * Removes a node at specified position
+   *
+   * Time complexity: O(n)
+   * Space complexity: O(1)
    *
    * @param {number} index
    *
+   * @returns {ListNode<T> | null}
    */
-  public remove(index: number): boolean {
-    return false;
+  public remove(index: number): ListNode<T> | null {
+    if (index < 0 || index >= this.size) {
+      return null;
+    }
+
+    if (index === 0) {
+      return this.shift();
+    }
+
+    if (index === this.size - 1) {
+      return this.pop();
+    }
+
+    const previous = this.get(index - 1);
+    const toBeRemoved = previous.next;
+    previous.next = toBeRemoved.next;
+    toBeRemoved.next = null;
+    this.size--;
+    return toBeRemoved;
   }
 
+  /**
+   * Reverses the list
+   *
+   * Time complexity: O(n)
+   * Space complexity: O(1)
+   *
+   * @returns {SingleLinkedList<T>}
+   */
+  public reverse(): SingleLinkedList<T> {
+    if (this.size < 2) {
+      return this;
+    }
+
+    let previous = this.head;
+    let current = previous.next;
+    let next = null;
+
+    // Set up the tail:
+    this.head.next = null;
+    this.tail = this.head;
+
+    while (current) {
+      next = current.next;
+
+      // Reverse the pointer:
+      current.next = previous;
+
+      // Move forward:
+      previous = current;
+      current = next;
+    }
+
+    this.head = previous;
+
+    return this;
+  }
   /**
    * Updates the value of a node on a
    * provided position
