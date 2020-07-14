@@ -13,3 +13,4 @@ Collection of data structures
 1. SinglyLinkedList
 2. DoublyLinkedList
 3. Stack
+4. Queue

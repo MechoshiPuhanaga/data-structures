@@ -2,7 +2,7 @@ import { Stack } from "./index";
 
 let stack: Stack<number>;
 
-describe("SinglyLinkedList", () => {
+describe("Stack", () => {
   beforeEach(() => {
     stack = new Stack<number>();
   });
@@ -61,6 +61,6 @@ describe("SinglyLinkedList", () => {
     stack.push(3);
 
     expect(stack).toHaveProperty("size", 3);
-    expect(stack.toString()).toBe("<3,2,1>");
+    expect(stack.toString()).toBe("stack<3,2,1>");
   });
 });
