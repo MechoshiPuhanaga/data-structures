@@ -21,6 +21,9 @@ export class DoublyLinkedList<T> {
     this.tail = null;
   }
 
+  /**
+   * Implement the iterable protocol
+   */
   *[Symbol.iterator]() {
     let current = this.head;
 

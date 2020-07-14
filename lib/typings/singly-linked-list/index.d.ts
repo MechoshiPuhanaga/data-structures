@@ -8,6 +8,9 @@ export declare class SinglyLinkedList<T> {
     tail: ListNode<T> | null;
     size: number;
     constructor();
+    /**
+     * Implement the iterable protocol
+     */
     [Symbol.iterator](): Generator<T, void, unknown>;
     /**
      * Creates a SinglyLinkedList from
