@@ -6,8 +6,10 @@ Collection of data structures
 
 - [Typescript](https://www.typescriptlang.org/)
 - [Yarn](https://yarnpkg.com/)
-- [Jest]()
+- [Jest](https://github.com/kulshekhar/ts-jest)
 
 ## Contents:
 
 1. SinglyLinkedList
+2. DoublyLinkedList
+3. Stack
