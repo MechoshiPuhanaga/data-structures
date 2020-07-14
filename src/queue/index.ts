@@ -8,13 +8,15 @@ class Node<T> {
   }
 }
 
-export class Stack<T> {
+export class Queue<T> {
   head: Node<T> | null;
+  tail: Node<T> | null;
   size: number;
 
   constructor() {
     this.head = null;
     this.size = 0;
+    this.tail = null;
   }
 
   /**
@@ -30,30 +32,37 @@ export class Stack<T> {
   }
 
   /**
-   * Removes element from the top of the stack
+   * Removes and returns the first element
+   * in the queue
    *
    * Time complexity: O(1)
    * Space complexity: O(1)
    *
-   * @param {T} value
-   *
-   * @returns {number}
+   * @returns {T | null}
    */
-  pop(): T | null {
-    if (this.size === 0) {
-      return null;
+  dequeue(): T | null {
+    let value = null;
+
+    switch (this.size) {
+      case 0:
+        break;
+      case 1:
+        value = this.head.value;
+        this.head = null;
+        this.tail = null;
+        break;
+      default:
+        value = this.head.value;
+        this.head = this.head.next;
     }
 
-    const node = this.head;
-    this.head = node.next;
+    this.size = Math.max(0, --this.size);
 
-    this.size--;
-
-    return node.value;
+    return value;
   }
 
   /**
-   * Adds element to the top of the stack
+   * Adds element to the end of the queue
    *
    * Time complexity: O(1)
    * Space complexity: O(1)
@@ -62,11 +71,16 @@ export class Stack<T> {
    *
    * @returns {number}
    */
-  push(value: T): number {
+  enqueue(value: T): number {
     const newNode = new Node<T>(value);
 
-    newNode.next = this.head;
-    this.head = newNode;
+    if (this.size === 0) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
 
     return ++this.size;
   }
@@ -77,9 +91,10 @@ export class Stack<T> {
    * Time complexity: O(n)
    * Space complexity: O(n)
    *
+   * @returns {string}
    */
   public toString(): string {
-    let output = "stack<";
+    let output = "queue<";
     let current = this.head;
 
     while (current) {
