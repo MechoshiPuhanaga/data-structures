@@ -14,3 +14,4 @@ Collection of data structures
 2. DoublyLinkedList
 3. Stack
 4. Queue
+5. BinaryHeap
