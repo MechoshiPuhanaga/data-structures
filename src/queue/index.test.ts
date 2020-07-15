@@ -63,6 +63,6 @@ describe("Queue", () => {
     queue.enqueue(3);
 
     expect(queue).toHaveProperty("size", 3);
-    expect(queue.toString()).toBe("queue<1,2,3>");
+    expect(queue.toString()).toBe("Queue <1,2,3>");
   });
 });

@@ -79,7 +79,7 @@ export class Stack<T> {
    *
    */
   public toString(): string {
-    let output = "stack<";
+    let output = "Stack <";
     let current = this.head;
 
     while (current) {

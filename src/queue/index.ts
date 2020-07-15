@@ -94,7 +94,7 @@ export class Queue<T> {
    * @returns {string}
    */
   public toString(): string {
-    let output = "queue<";
+    let output = "Queue <";
     let current = this.head;
 
     while (current) {
