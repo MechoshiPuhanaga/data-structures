@@ -1,14 +1,16 @@
-import { DoublyLinkedList } from "./lib/doubly-linked-list";
+import { BinaryHeap } from "./lib/binary-heap";
 
-const dll = new DoublyLinkedList();
-dll.push(1);
-dll.push(2);
-dll.push(3);
-dll.push(4);
-dll.push(5);
-dll.push(6);
+const bh = new BinaryHeap((a, b) => a.value > b.value);
 
-console.log([...DoublyLinkedList.fromArray([...dll]).reverse()]);
-console.log(
-  DoublyLinkedList.fromArray(["a", "b", "c", "d", "e"]).reverse().toString()
-);
+bh.insert({ value: 41 });
+bh.insert({ value: 39 });
+bh.insert({ value: 33 });
+bh.insert({ value: 18 });
+bh.insert({ value: 27 });
+bh.insert({ value: 12 });
+bh.insert({ value: 55 });
+
+console.log(bh);
+console.log(bh.extract());
+console.log(bh.extract());
+console.log(bh + "");

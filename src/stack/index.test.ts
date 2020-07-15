@@ -61,6 +61,6 @@ describe("Stack", () => {
     stack.push(3);
 
     expect(stack).toHaveProperty("size", 3);
-    expect(stack.toString()).toBe("stack<3,2,1>");
+    expect(stack.toString()).toBe("Stack <3,2,1>");
   });
 });

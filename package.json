@@ -9,7 +9,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "rm -r ./lib/* && tsc",
+    "build": "rm -r ./lib/* && ttsc",
     "docs": "typedoc",
     "start": "nodemon --exec babel-node ./playground.js",
     "test": "jest",
@@ -17,13 +17,16 @@
   },
   "sideEffects": false,
   "devDependencies": {
-    "@babel/core": "7.10.4",
-    "@babel/node": "7.10.4",
+    "@babel/core": "7.10.5",
+    "@babel/node": "7.10.5",
     "@babel/preset-env": "7.10.4",
     "@types/jest": "26.0.4",
+    "@zerollup/ts-transform-paths": "1.7.18",
     "jest": "26.1.0",
     "nodemon": "2.0.4",
     "ts-jest": "26.1.2",
+    "ts-node": "8.10.2",
+    "ttypescript": "1.5.10",
     "typedoc": "0.17.0-3",
     "typescript": "3.9.6"
   }
