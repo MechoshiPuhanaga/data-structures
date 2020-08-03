@@ -20,6 +20,14 @@ describe("BinarySearchTree", () => {
     expect(root.left.data.value).toBe(1);
   });
 
+  test("insert throw error", () => {
+    try {
+      root.insert({ item: null, value: 20 });
+    } catch (error) {
+      expect(error.message).toBe("There is already a node with same value!");
+    }
+  });
+
   test("contains", () => {
     expect(root.contains(root)).toBe(true);
     expect(root.contains(new BinarySearchTree({ item: null, value: 5 }))).toBe(

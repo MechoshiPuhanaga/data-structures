@@ -31,6 +31,8 @@ export class BinarySearchTree<T> {
       this.right.insert(data);
     } else if (this.data.value < data.value) {
       this.right = new BinarySearchTree(data);
+    } else {
+      throw new Error("There is already a node with same value!");
     }
   }
 
