@@ -20,6 +20,8 @@ export class BinarySearchTree<T> {
    * Time complexity: O(log n)
    * Space complexity: O(1)
    *
+   * @param {Data} data
+   *
    * @returns {void}
    */
   public insert(data: Data): void {
@@ -41,6 +43,8 @@ export class BinarySearchTree<T> {
    *
    * Time complexity: O(log n)
    * Space complexity: O(1)
+   *
+   * @param {BinarySearchTree<Data>} node
    *
    * @returns {boolean}
    */
@@ -82,5 +86,96 @@ export class BinarySearchTree<T> {
     }
 
     return true;
+  }
+
+  /**
+   * Traverse tree Breadth First.
+   *
+   * Time complexity: O(n)
+   * Space complexity: O(n)
+   *
+   * @param {function} fn
+   *
+   * @returns {boolean}
+   */
+  public traverseBF(fn: (node: BinarySearchTree<Data>) => void) {
+    const arr: BinarySearchTree<Data>[] = [this];
+
+    while (arr.length) {
+      const node: BinarySearchTree<Data> = arr.shift();
+
+      if (node.left instanceof BinarySearchTree) {
+        arr.push(node.left);
+      }
+
+      if (node.right instanceof BinarySearchTree) {
+        arr.push(node.right);
+      }
+
+      typeof fn === "function" && fn(node);
+    }
+  }
+
+  /**
+   * Traverse tree Depth First Pre Order.
+   *
+   * Time complexity: O(n)
+   * Space complexity: O(n)
+   *
+   * @param {function} fn
+   *
+   * @returns {boolean}
+   */
+  public traverseDFpreOrder(fn: (node: BinarySearchTree<Data>) => void) {
+    const arr: BinarySearchTree<Data>[] = [this];
+
+    while (arr.length) {
+      const node: BinarySearchTree<Data> = arr.shift();
+
+      if (node.right instanceof BinarySearchTree) {
+        arr.unshift(node.right);
+      }
+
+      if (node.left instanceof BinarySearchTree) {
+        arr.unshift(node.left);
+      }
+
+      typeof fn === "function" && fn(node);
+    }
+  }
+
+  /**
+   * Traverse tree Depth First Post Order.
+   *
+   * Time complexity: O(n)
+   * Space complexity: O(n)
+   *
+   * @param {function} fn
+   *
+   * @returns {boolean}
+   */
+  public traverseDFpostOrder(fn: (node: BinarySearchTree<Data>) => void) {
+    const arr: BinarySearchTree<Data>[] = [this];
+    const postOrderArr: BinarySearchTree<Data>[] = [];
+
+    while (arr.length) {
+      const node: BinarySearchTree<Data> = arr.shift();
+
+      if (node.left instanceof BinarySearchTree) {
+        arr.unshift(node.left);
+      }
+
+      if (node.right instanceof BinarySearchTree) {
+        arr.unshift(node.right);
+      }
+
+      postOrderArr.push(node);
+    }
+
+    while (postOrderArr.length) {
+      const node: BinarySearchTree<Data> = postOrderArr.pop();
+
+      typeof fn === "function" && fn(node);
+    }
   }
 }
