@@ -63,11 +63,11 @@ describe("BinarySearchTree", () => {
     expect(fakeBinarySearchTree_2.validate()).toBe(false);
   });
 
-  test("it_traverseBF", () => {
+  test("traverseBF", () => {
     const arr: number[] = [];
     const arrTobEqual: number[] = [10, 6, 15, 3, 8, 20];
 
-    root.it_traverseBF((node) => {
+    root.traverseBF((node) => {
       arr.push(node.data.value);
     });
 
@@ -85,11 +85,44 @@ describe("BinarySearchTree", () => {
     expect(arr).toEqual(arrTobEqual);
   });
 
+  test("rec_traverseDFpreOrder", () => {
+    const arr: number[] = [];
+    const arrTobEqual: number[] = [10, 6, 3, 8, 15, 20];
+
+    root.rec_traverseDFpreOrder((node) => {
+      arr.push(node.data.value);
+    });
+
+    expect(arr).toEqual(arrTobEqual);
+  });
+
   test("it_traverseDFpostOrder", () => {
     const arr: number[] = [];
     const arrTobEqual: number[] = [3, 8, 6, 20, 15, 10];
 
     root.it_traverseDFpostOrder((node) => {
+      arr.push(node.data.value);
+    });
+
+    expect(arr).toEqual(arrTobEqual);
+  });
+
+  test("rec_traverseDFpostOrder", () => {
+    const arr: number[] = [];
+    const arrTobEqual: number[] = [3, 8, 6, 20, 15, 10];
+
+    root.rec_traverseDFpostOrder((node) => {
+      arr.push(node.data.value);
+    });
+
+    expect(arr).toEqual(arrTobEqual);
+  });
+
+  test("rec_traverseDFinOrder", () => {
+    const arr: number[] = [];
+    const arrTobEqual: number[] = [3, 6, 8, 10, 15, 20];
+
+    root.rec_traverseDFinOrder((node) => {
       arr.push(node.data.value);
     });
 

@@ -98,7 +98,7 @@ export class BinarySearchTree<T> {
    *
    * @returns {boolean}
    */
-  public it_traverseBF(fn: (node: BinarySearchTree<Data>) => void) {
+  public traverseBF(fn: (node: BinarySearchTree<Data>) => void) {
     const arr: BinarySearchTree<Data>[] = [this];
 
     while (arr.length) {
@@ -117,7 +117,7 @@ export class BinarySearchTree<T> {
   }
 
   /**
-   * Traverse tree Depth First Pre Order.
+   * Traverse tree iteratively Depth First Pre Order.
    *
    * Time complexity: O(n)
    * Space complexity: O(n)
@@ -145,7 +145,28 @@ export class BinarySearchTree<T> {
   }
 
   /**
-   * Traverse tree Depth First Post Order.
+   * Traverse tree recursively Depth First Pre Order.
+   *
+   * Time complexity: O(n)
+   * Space complexity: O(1)
+   *
+   * @param {function} fn
+   *
+   * @returns {boolean}
+   */
+  public rec_traverseDFpreOrder(fn: (node: BinarySearchTree<Data>) => void) {
+    const traverse = (node: BinarySearchTree<Data>): void => {
+      typeof fn === "function" && fn(node);
+
+      node.left instanceof BinarySearchTree && traverse(node.left);
+      node.right instanceof BinarySearchTree && traverse(node.right);
+    };
+
+    traverse(this);
+  }
+
+  /**
+   * Traverse tree iteratively Depth First Post Order.
    *
    * Time complexity: O(n)
    * Space complexity: O(n)
@@ -177,5 +198,45 @@ export class BinarySearchTree<T> {
 
       typeof fn === "function" && fn(node);
     }
+  }
+
+  /**
+   * Traverse tree recursively Depth First Post Order.
+   *
+   * Time complexity: O(n)
+   * Space complexity: O(1)
+   *
+   * @param {function} fn
+   *
+   * @returns {boolean}
+   */
+  public rec_traverseDFpostOrder(fn: (node: BinarySearchTree<Data>) => void) {
+    const traverse = (node: BinarySearchTree<Data>): void => {
+      node.left instanceof BinarySearchTree && traverse(node.left);
+      node.right instanceof BinarySearchTree && traverse(node.right);
+      typeof fn === "function" && fn(node);
+    };
+
+    traverse(this);
+  }
+
+  /**
+   * Traverse tree recursively Depth First In Order.
+   *
+   * Time complexity: O(n)
+   * Space complexity: O(1)
+   *
+   * @param {function} fn
+   *
+   * @returns {boolean}
+   */
+  public rec_traverseDFinOrder(fn: (node: BinarySearchTree<Data>) => void) {
+    const traverse = (node: BinarySearchTree<Data>): void => {
+      node.left instanceof BinarySearchTree && traverse(node.left);
+      typeof fn === "function" && fn(node);
+      node.right instanceof BinarySearchTree && traverse(node.right);
+    };
+
+    traverse(this);
   }
 }
