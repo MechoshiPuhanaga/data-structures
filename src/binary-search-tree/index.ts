@@ -98,7 +98,7 @@ export class BinarySearchTree<T> {
    *
    * @returns {boolean}
    */
-  public traverseBF(fn: (node: BinarySearchTree<Data>) => void) {
+  public it_traverseBF(fn: (node: BinarySearchTree<Data>) => void) {
     const arr: BinarySearchTree<Data>[] = [this];
 
     while (arr.length) {
@@ -126,7 +126,7 @@ export class BinarySearchTree<T> {
    *
    * @returns {boolean}
    */
-  public traverseDFpreOrder(fn: (node: BinarySearchTree<Data>) => void) {
+  public it_traverseDFpreOrder(fn: (node: BinarySearchTree<Data>) => void) {
     const arr: BinarySearchTree<Data>[] = [this];
 
     while (arr.length) {
@@ -154,7 +154,7 @@ export class BinarySearchTree<T> {
    *
    * @returns {boolean}
    */
-  public traverseDFpostOrder(fn: (node: BinarySearchTree<Data>) => void) {
+  public it_traverseDFpostOrder(fn: (node: BinarySearchTree<Data>) => void) {
     const arr: BinarySearchTree<Data>[] = [this];
     const postOrderArr: BinarySearchTree<Data>[] = [];
 

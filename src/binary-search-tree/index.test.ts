@@ -63,33 +63,33 @@ describe("BinarySearchTree", () => {
     expect(fakeBinarySearchTree_2.validate()).toBe(false);
   });
 
-  test("traverseBF", () => {
+  test("it_traverseBF", () => {
     const arr: number[] = [];
     const arrTobEqual: number[] = [10, 6, 15, 3, 8, 20];
 
-    root.traverseBF((node) => {
+    root.it_traverseBF((node) => {
       arr.push(node.data.value);
     });
 
     expect(arr).toEqual(arrTobEqual);
   });
 
-  test("traverseDFpreOrder", () => {
+  test("it_traverseDFpreOrder", () => {
     const arr: number[] = [];
     const arrTobEqual: number[] = [10, 6, 3, 8, 15, 20];
 
-    root.traverseDFpreOrder((node) => {
+    root.it_traverseDFpreOrder((node) => {
       arr.push(node.data.value);
     });
 
     expect(arr).toEqual(arrTobEqual);
   });
 
-  test("traverseDFpostOrder", () => {
+  test("it_traverseDFpostOrder", () => {
     const arr: number[] = [];
     const arrTobEqual: number[] = [3, 8, 6, 20, 15, 10];
 
-    root.traverseDFpostOrder((node) => {
+    root.it_traverseDFpostOrder((node) => {
       arr.push(node.data.value);
     });
 
