@@ -239,4 +239,28 @@ export class BinarySearchTree<T> {
 
     traverse(this);
   }
+
+  /**
+   * Creates a Binary Search Tree from an array.
+   *
+   * Time complexity: O(n)
+   * Space complexity: O(n)
+   *
+   * @param {Array<Data>} array
+   *
+   * @returns {BinarySearchTree<Data>}
+   *
+   */
+  public static fromArray(
+    array: Array<Data>,
+    rootData: Data
+  ): BinarySearchTree<Data> {
+    const root: BinarySearchTree<Data> = new BinarySearchTree(rootData);
+
+    for (let data of array) {
+      root.insert(data);
+    }
+
+    return root;
+  }
 }

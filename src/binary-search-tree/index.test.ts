@@ -128,4 +128,19 @@ describe("BinarySearchTree", () => {
 
     expect(arr).toEqual(arrTobEqual);
   });
+
+  test("fromArray", () => {
+    const root: BinarySearchTree<Data> = BinarySearchTree.fromArray(
+      [
+        { item: null, value: 3 },
+        { item: null, value: 6 },
+        { item: null, value: 8 },
+        { item: null, value: 15 },
+        { item: null, value: 20 },
+      ],
+      { item: "Root", value: 10 }
+    );
+
+    expect(root.validate()).toBe(true);
+  });
 });
