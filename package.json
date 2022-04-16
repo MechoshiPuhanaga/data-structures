@@ -1,6 +1,6 @@
 {
   "name": "@mechoshi/data-structures",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Collection of data structures",
   "main": "lib/index.js",
   "types": "lib/typings/index.d.ts",
@@ -16,7 +16,7 @@
     "build": "rm -r ./lib/* && ttsc",
     "doc": "typedoc",
     "lint": "eslint \"src/**/*.ts\"",
-    "pub": "yarn lint && yarn test && yarn build && npm publish --access public",
+    "pub": "yarn lint && yarn test && yarn build",
     "start": "nodemon --exec ts-node -r tsconfig-paths/register ./playground.ts",
     "test": "jest",
     "test:watch": "jest --watch"
