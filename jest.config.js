@@ -11,10 +11,8 @@ module.exports = {
   },
   moduleDirectories: ['node_modules', 'src'],
   moduleNameMapper: {
-    '^@helpers(.*)$': '<rootDir>/src/helpers$1',
-    '^@types(.*)$': '<rootDir>/src/types$1'
+    '^@helpers(.*)$': '<rootDir>/src/helpers$1'
   },
   preset: 'ts-jest',
   testEnvironment: 'node'
 };
-

@@ -9,3 +9,9 @@ docs
 
 # tests:
 coverage
+
+# bundle analysis
+bundle-analysis.html
+
+# build artifacts
+lib

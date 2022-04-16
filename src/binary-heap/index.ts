@@ -1,6 +1,6 @@
 import { swap } from '@helpers';
 
-import { Comparator } from '@types';
+import { Comparator } from '../types';
 
 export class BinaryHeap<T> {
   private comparator: (a: T, b: T) => boolean;

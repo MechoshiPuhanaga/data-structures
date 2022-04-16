@@ -2,21 +2,15 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "baseUrl": "src",
-    "declaration": true,
-    "declarationDir": "./lib/typings/",
-    "declarationMap": true,
     "downlevelIteration": true,
     "esModuleInterop": true,
     "lib": ["ESNext"],
     "module": "ESNext",
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "outDir": "./lib/",
     "paths": {
       "@helpers": ["./helpers"],
-      "@helpers/*": ["./helpers/*"],
-      "@types": ["./types"],
-      "@types/*": ["./types/*"]
+      "@helpers/*": ["./helpers/*"]
     },
     "plugins": [
       {
@@ -34,9 +28,5 @@
     "compilerOptions": {
       "module": "commonjs"
     }
-  },
-  "typedocOptions": {
-    "entryPoints": ["src/index.ts"],
-    "out": "docs"
   }
 }
