@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "types": "lib/typings/index.d.ts",
   "files": [
-    "lib/**/*"
+    "lib/**/*",
+    "package.json"
   ],
   "repository": "git@github.com:MechoshiPuhanaga/data-structures.git",
   "author": "Mechoshi Puhanaga",
@@ -15,7 +16,7 @@
     "build": "rm -r ./lib/* && ttsc",
     "doc": "typedoc",
     "lint": "eslint \"src/**/*.ts\"",
-    "pub": "yarn lint && yarn test && yarn build",
+    "pub": "yarn lint && yarn test && yarn build && npm publish --access public",
     "start": "nodemon --exec ts-node -r tsconfig-paths/register ./playground.ts",
     "test": "jest",
     "test:watch": "jest --watch"
