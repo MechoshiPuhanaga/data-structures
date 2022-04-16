@@ -18,6 +18,11 @@
       "@types": ["./types"],
       "@types/*": ["./types/*"]
     },
+    "plugins": [
+      {
+        "transform": "@zerollup/ts-transform-paths"
+      }
+    ],
     "sourceMap": true,
     "strict": true,
     "target": "ES2015"

@@ -1,4 +1,4 @@
-import { Comparator } from '@types';
+import { Comparator } from "../types";
 export declare class BinaryHeap<T> {
     private comparator;
     private values;
