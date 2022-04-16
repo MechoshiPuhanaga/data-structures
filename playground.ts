@@ -1,6 +1,10 @@
-import { BinaryHeap } from "./lib/binary-heap";
+import { BinaryHeap } from "./src/binary-heap";
 
-const bh = new BinaryHeap((a, b) => a.value > b.value);
+interface Item {
+  value: number;
+}
+
+const bh = new BinaryHeap<Item>((a: Item, b: Item) => a.value > b.value);
 
 bh.insert({ value: 41 });
 bh.insert({ value: 39 });

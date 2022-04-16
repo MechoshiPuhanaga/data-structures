@@ -70,7 +70,7 @@ export class SinglyLinkedList<T> {
 
     let current = this.head;
     while (index > 0) {
-      current = current.next;
+      current = current?.next ?? null;
       index--;
     }
 
@@ -120,8 +120,12 @@ export class SinglyLinkedList<T> {
     const previous = this.getNode(index - 1);
 
     const newNode = new ListNode<T>(value);
-    newNode.next = previous.next;
-    previous.next = newNode;
+    newNode.next = previous?.next ?? null;
+
+    if (previous?.next) {
+      previous.next = newNode;
+    }
+
     this.size++;
 
     return true;
@@ -145,7 +149,7 @@ export class SinglyLinkedList<T> {
       return node ? node.value : null;
     } else {
       let current = this.head;
-      let next = current.next;
+      let next = current?.next ?? null;
 
       while (next && next.next) {
         current = next;
@@ -153,10 +157,14 @@ export class SinglyLinkedList<T> {
       }
 
       this.tail = current;
-      current.next = null;
+
+      if (current?.next) {
+        current.next = null;
+      }
+
       this.size--;
 
-      return next.value;
+      return next?.value ?? null;
     }
   }
 
@@ -176,7 +184,10 @@ export class SinglyLinkedList<T> {
       this.head = newNode;
       this.tail = newNode;
     } else {
-      this.tail.next = newNode;
+      if (this.tail) {
+        this.tail.next = newNode;
+      }
+
       this.tail = newNode;
     }
 
@@ -207,11 +218,19 @@ export class SinglyLinkedList<T> {
     }
 
     const previous = this.getNode(index - 1);
-    const toBeRemoved = previous.next;
-    previous.next = toBeRemoved.next;
-    toBeRemoved.next = null;
+    const toBeRemoved = previous?.next ?? null;
+
+    if (previous?.next) {
+      previous.next = toBeRemoved?.next ?? null;
+    }
+
+    if (toBeRemoved?.next) {
+      toBeRemoved.next = null;
+    }
+
     this.size--;
-    return toBeRemoved.value;
+
+    return toBeRemoved?.value ?? null;
   }
 
   /**
@@ -228,11 +247,14 @@ export class SinglyLinkedList<T> {
     }
 
     let previous = this.head;
-    let current = previous.next;
+    let current = previous?.next ?? null;
     let next = null;
 
     // Set up the tail:
-    this.head.next = null;
+    if (this.head) {
+      this.head.next = null;
+    }
+
     this.tail = this.head;
 
     while (current) {
@@ -290,8 +312,12 @@ export class SinglyLinkedList<T> {
       this.tail = null;
       this.size = 0;
     } else {
-      this.head = this.head.next;
-      node.next = null;
+      this.head = this.head?.next ?? null;
+
+      if (node?.next) {
+        node.next = null;
+      }
+
       this.size--;
     }
 
@@ -306,7 +332,7 @@ export class SinglyLinkedList<T> {
    *
    */
   public toString(): string {
-    let output = "";
+    let output = '';
     let current = this.head;
 
     while (current) {
@@ -314,7 +340,7 @@ export class SinglyLinkedList<T> {
       current = current.next;
 
       if (current) {
-        output += "->";
+        output += '->';
       }
     }
 

@@ -47,13 +47,13 @@ export class Queue<T> {
       case 0:
         break;
       case 1:
-        value = this.head.value;
+        value = this.head?.value ?? null;
         this.head = null;
         this.tail = null;
         break;
       default:
-        value = this.head.value;
-        this.head = this.head.next;
+        value = this.head?.value ?? null;
+        this.head = this.head?.next ?? null;
     }
 
     this.size = Math.max(0, --this.size);
@@ -78,7 +78,10 @@ export class Queue<T> {
       this.head = newNode;
       this.tail = newNode;
     } else {
-      this.tail.next = newNode;
+      if (this.tail) {
+        this.tail.next = newNode;
+      }
+
       this.tail = newNode;
     }
 
@@ -94,7 +97,7 @@ export class Queue<T> {
    * @returns {string}
    */
   public toString(): string {
-    let output = "Queue <";
+    let output = 'Queue <';
     let current = this.head;
 
     while (current) {
@@ -102,9 +105,9 @@ export class Queue<T> {
       current = current.next;
 
       if (current) {
-        output += ",";
+        output += ',';
       } else {
-        output += ">";
+        output += '>';
       }
     }
 

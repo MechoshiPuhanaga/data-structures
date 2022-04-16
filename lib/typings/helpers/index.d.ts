@@ -1,2 +1,2 @@
-export declare const swap: (array: any[], a: number, b: number) => void;
+export declare const swap: (array: unknown[], a: number, b: number) => void;
 //# sourceMappingURL=index.d.ts.map

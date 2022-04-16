@@ -45,11 +45,11 @@ export class Stack<T> {
     }
 
     const node = this.head;
-    this.head = node.next;
+    this.head = node?.next ?? null;
 
     this.size--;
 
-    return node.value;
+    return node?.value ?? null;
   }
 
   /**
@@ -79,7 +79,7 @@ export class Stack<T> {
    *
    */
   public toString(): string {
-    let output = "Stack <";
+    let output = 'Stack <';
     let current = this.head;
 
     while (current) {
@@ -87,9 +87,9 @@ export class Stack<T> {
       current = current.next;
 
       if (current) {
-        output += ",";
+        output += ',';
       } else {
-        output += ">";
+        output += '>';
       }
     }
 

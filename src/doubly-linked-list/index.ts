@@ -75,13 +75,13 @@ export class DoublyLinkedList<T> {
     if (index < Math.floor(this.size / 2)) {
       current = this.head;
       while (index > 0) {
-        current = current.next;
+        current = current?.next ?? null;
         index--;
       }
     } else {
       current = this.tail;
       while (index < this.size - 1) {
-        current = current.prev;
+        current = current?.prev ?? null;
         index++;
       }
     }
@@ -132,9 +132,13 @@ export class DoublyLinkedList<T> {
     const previous = this.getNode(index - 1);
 
     const newNode = new ListNode<T>(value);
-    newNode.next = previous.next;
-    previous.next.prev = newNode;
-    previous.next = newNode;
+    newNode.next = previous?.next ?? null;
+
+    if (previous?.next) {
+      previous.next.prev = newNode;
+      previous.next = newNode;
+    }
+
     newNode.prev = previous;
     this.size++;
 
@@ -159,12 +163,20 @@ export class DoublyLinkedList<T> {
       return node ? node.value : null;
     } else {
       const node = this.tail;
-      node.prev.next = null;
-      this.tail = node.prev;
-      node.prev = null;
+
+      if (node?.prev) {
+        node.prev.next = null;
+      }
+
+      this.tail = node?.prev || null;
+
+      if (node?.prev) {
+        node.prev = null;
+      }
+
       this.size--;
 
-      return node.value;
+      return node?.value ?? null;
     }
   }
 
@@ -184,7 +196,10 @@ export class DoublyLinkedList<T> {
       this.head = newNode;
       this.tail = newNode;
     } else {
-      this.tail.next = newNode;
+      if (this.tail) {
+        this.tail.next = newNode;
+      }
+
       newNode.prev = this.tail;
       this.tail = newNode;
     }
@@ -216,12 +231,23 @@ export class DoublyLinkedList<T> {
     }
 
     const node = this.getNode(index);
-    node.prev.next = node.next;
-    node.next.prev = node.prev;
-    node.next = null;
-    node.prev = null;
+
+    if (node?.prev) {
+      node.prev.next = node.next;
+    }
+
+    if (node?.next) {
+      node.next.prev = node.prev;
+      node.next = null;
+    }
+
+    if (node?.prev) {
+      node.prev = null;
+    }
+
     this.size--;
-    return node.value;
+
+    return node?.value ?? null;
   }
 
   /**
@@ -242,10 +268,15 @@ export class DoublyLinkedList<T> {
     let counter = this.size - 1;
 
     while (counter >= 0) {
-      temp = current.prev;
+      temp = current?.prev ?? null;
 
-      current.prev = current.next;
-      current.next = temp;
+      if (current?.prev !== undefined) {
+        current.prev = current.next;
+      }
+
+      if (current?.next !== undefined) {
+        current.next = temp;
+      }
 
       current = temp;
       counter--;
@@ -297,9 +328,16 @@ export class DoublyLinkedList<T> {
       this.tail = null;
       this.size = 0;
     } else {
-      this.head = this.head.next;
-      this.head.prev = null;
-      node.next = null;
+      this.head = this.head?.next ?? null;
+
+      if (this.head?.prev) {
+        this.head.prev = null;
+      }
+
+      if (node?.next) {
+        node.next = null;
+      }
+
       this.size--;
     }
 
@@ -314,7 +352,7 @@ export class DoublyLinkedList<T> {
    *
    */
   public toString(): string {
-    let output = "";
+    let output = '';
     let current = this.head;
 
     while (current) {
@@ -322,7 +360,7 @@ export class DoublyLinkedList<T> {
       current = current.next;
 
       if (current) {
-        output += "<>";
+        output += '<>';
       }
     }
 

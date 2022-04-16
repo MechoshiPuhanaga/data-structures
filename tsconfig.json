@@ -1,26 +1,37 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
+    "baseUrl": "src",
     "declaration": true,
     "declarationDir": "./lib/typings/",
     "declarationMap": true,
     "downlevelIteration": true,
     "esModuleInterop": true,
-    "lib": ["ES2015"],
-    "module": "commonjs",
+    "lib": ["ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "node",
     "noImplicitAny": true,
     "outDir": "./lib/",
     "paths": {
-      "helpers": ["./src/helpers"],
-      "types": ["./src/types"]
+      "@helpers": ["./helpers"],
+      "@helpers/*": ["./helpers/*"],
+      "@types": ["./types"],
+      "@types/*": ["./types/*"]
     },
-    "plugins": [{ "transform": "@zerollup/ts-transform-paths" }],
     "sourceMap": true,
-    "strict": false,
-    "target": "es5"
+    "strict": true,
+    "target": "ES2015"
   },
   "files": ["./src/index.ts"],
   "include": ["./src/**/*.ts"],
-  "exclude": ["node_modules", "src/**/*.test.ts"]
+  "exclude": ["node_modules", "src/**/*.test.ts"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
+  "typedocOptions": {
+    "entryPoints": ["src/index.ts"],
+    "out": "docs"
+  }
 }

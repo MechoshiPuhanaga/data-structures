@@ -1,7 +1,20 @@
 module.exports = {
   collectCoverage: true,
-  coverageDirectory: "coverage",
-  moduleDirectories: ["node_modules", "src"],
-  preset: "ts-jest",
-  testEnvironment: "node",
+  coverageDirectory: 'coverage',
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 90,
+      lines: 90,
+      statements: 90
+    }
+  },
+  moduleDirectories: ['node_modules', 'src'],
+  moduleNameMapper: {
+    '^@helpers(.*)$': '<rootDir>/src/helpers$1',
+    '^@types(.*)$': '<rootDir>/src/types$1'
+  },
+  preset: 'ts-jest',
+  testEnvironment: 'node'
 };
+

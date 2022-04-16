@@ -1,33 +1,43 @@
 {
-  "name": "data-structures",
-  "version": "1.0.0",
+  "name": "@mechoshi/data-structures",
+  "version": "0.0.1",
   "description": "Collection of data structures",
   "main": "lib/index.js",
   "types": "lib/typings/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
   "repository": "git@github.com:MechoshiPuhanaga/data-structures.git",
   "author": "Mechoshi Puhanaga",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "scripts": {
-    "build": "rm -r ./lib/* && ttsc",
-    "docs": "typedoc",
-    "start": "nodemon --exec babel-node ./playground.js",
+    "build": "rm -r ./lib/* && tsc",
+    "doc": "typedoc",
+    "lint": "eslint \"src/**/*.ts\"",
+    "pub": "yarn lint && yarn test && yarn build",
+    "start": "nodemon --exec ts-node -r tsconfig-paths/register ./playground.ts",
     "test": "jest",
     "test:watch": "jest --watch"
   },
   "sideEffects": false,
   "devDependencies": {
-    "@babel/core": "7.10.5",
-    "@babel/node": "7.10.5",
-    "@babel/preset-env": "7.10.4",
-    "@types/jest": "26.0.4",
-    "@zerollup/ts-transform-paths": "1.7.18",
-    "jest": "26.1.0",
-    "nodemon": "2.0.4",
-    "ts-jest": "26.1.2",
-    "ts-node": "8.10.2",
-    "ttypescript": "1.5.10",
-    "typedoc": "0.17.0-3",
-    "typescript": "3.9.6"
+    "@types/jest": "27.4.1",
+    "@typescript-eslint/eslint-plugin": "5.19.0",
+    "@typescript-eslint/parser": "5.19.0",
+    "eslint": "8.13.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "jest": "27.5.1",
+    "nodemon": "2.0.15",
+    "prettier": "2.6.2",
+    "ts-jest": "27.1.4",
+    "ts-node": "10.7.0",
+    "tsconfig-paths": "3.14.1",
+    "typedoc": "0.22.15",
+    "typescript": "4.6.3"
+  },
+  "peerDependencies": {
+    "typescript": ">=4.6.3"
   }
 }
