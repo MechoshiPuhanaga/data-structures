@@ -18,14 +18,14 @@ describe('BinaryHeap', () => {
       heap = new BinaryHeap<number>(comparatorMin);
     });
 
-    test('Constrictor creates right instance', () => {
+    it('Constrictor creates right instance', () => {
       expect(heap).toBeInstanceOf(BinaryHeap);
       expect(heap).toHaveProperty('size', 0);
       // @ts-ignore
       expect(heap.values).toEqual([]);
     });
 
-    test('Constrictor throws if no comparator has been provided', () => {
+    it('Constrictor throws if no comparator has been provided', () => {
       try {
         // @ts-ignore
         heap = new BinaryHeap<number>();
@@ -36,7 +36,7 @@ describe('BinaryHeap', () => {
       expect(BinaryHeap).toThrow(Error);
     });
 
-    test('insert', () => {
+    it('insert', () => {
       heap.insert(1);
       expect(heap).toHaveProperty('size', 1);
       expect(heap.root()).toBe(1);
@@ -48,7 +48,7 @@ describe('BinaryHeap', () => {
       expect(heap.root()).toBe(-2);
     });
 
-    test('extract with sinkDown swaps', () => {
+    it('extract with sinkDown swaps', () => {
       heap.insert(1);
       heap.insert(2);
       heap.insert(3);
@@ -88,7 +88,7 @@ describe('BinaryHeap', () => {
       expect(heap.root()).toBeNull();
     });
 
-    test('extract without sinkDown swaps', () => {
+    it('extract without sinkDown swaps', () => {
       heap.insert(1);
       heap.insert(1);
       heap.insert(1);
@@ -116,7 +116,7 @@ describe('BinaryHeap', () => {
       expect(heap.root()).toBe(1);
     });
 
-    test('toString', () => {
+    it('toString', () => {
       heap = new BinaryHeap<number>(comparatorMax);
 
       heap.insert(41);
@@ -136,14 +136,14 @@ describe('BinaryHeap', () => {
       heapObj = new BinaryHeap<Value>(comparatorMinObj);
     });
 
-    test('Constrictor creates right instance', () => {
+    it('Constrictor creates right instance', () => {
       expect(heapObj).toBeInstanceOf(BinaryHeap);
       expect(heapObj).toHaveProperty('size', 0);
       // @ts-ignore
       expect(heapObj.values).toEqual([]);
     });
 
-    test('Constrictor throws if no comparator has been provided', () => {
+    it('Constrictor throws if no comparator has been provided', () => {
       try {
         // @ts-ignore
         heapObj = new BinaryHeap<Value>();
@@ -154,7 +154,7 @@ describe('BinaryHeap', () => {
       expect(BinaryHeap).toThrow(Error);
     });
 
-    test('insert', () => {
+    it('insert', () => {
       heapObj.insert({ value: 1 });
       expect(heapObj).toHaveProperty('size', 1);
       expect(heapObj.root()).toEqual({ value: 1 });
@@ -166,7 +166,7 @@ describe('BinaryHeap', () => {
       expect(heapObj.root()).toEqual({ value: -2 });
     });
 
-    test('extract with sinkDown swaps', () => {
+    it('extract with sinkDown swaps', () => {
       heapObj.insert({ value: 1 });
       heapObj.insert({ value: 2 });
       heapObj.insert({ value: 3 });
@@ -206,7 +206,7 @@ describe('BinaryHeap', () => {
       expect(heapObj.root()).toBeNull();
     });
 
-    test('extract without sinkDown swaps', () => {
+    it('extract without sinkDown swaps', () => {
       heapObj.insert({ value: 1 });
       heapObj.insert({ value: 1 });
       heapObj.insert({ value: 1 });
@@ -234,7 +234,7 @@ describe('BinaryHeap', () => {
       expect(heapObj.root()).toEqual({ value: 1 });
     });
 
-    test('toString', () => {
+    it('toString', () => {
       heapObj = new BinaryHeap<Value>(comparatorMaxObj);
 
       heapObj.insert({ value: 41 });

@@ -1,5 +1,5 @@
-class ListNode<T> {
-  next: ListNode<T> | null;
+export class SinglyLinkedListNode<T> {
+  next: SinglyLinkedListNode<T> | null;
   value: T;
 
   constructor(value: T) {
@@ -9,8 +9,8 @@ class ListNode<T> {
 }
 
 export class SinglyLinkedList<T> {
-  head: ListNode<T> | null;
-  tail: ListNode<T> | null;
+  private head: SinglyLinkedListNode<T> | null;
+  private tail: SinglyLinkedListNode<T> | null;
   size: number;
 
   constructor() {
@@ -63,7 +63,7 @@ export class SinglyLinkedList<T> {
    *
    * @returns {ListNode<T> | null}
    */
-  private getNode(index: number): ListNode<T> | null {
+  private getNode(index: number): SinglyLinkedListNode<T> | null {
     if (index < 0 || index > this.size - 1 || this.size === 0) {
       return null;
     }
@@ -119,7 +119,7 @@ export class SinglyLinkedList<T> {
 
     const previous = this.getNode(index - 1);
 
-    const newNode = new ListNode<T>(value);
+    const newNode = new SinglyLinkedListNode<T>(value);
     newNode.next = previous?.next ?? null;
 
     if (previous?.next) {
@@ -178,7 +178,7 @@ export class SinglyLinkedList<T> {
    * @returns {number} - the updated size of the list
    */
   public push(value: T): number {
-    const newNode = new ListNode(value);
+    const newNode = new SinglyLinkedListNode(value);
 
     if (this.size === 0) {
       this.head = newNode;
@@ -356,7 +356,7 @@ export class SinglyLinkedList<T> {
    * @returns {number} - the updated size of the list
    */
   public unshift(value: T): number {
-    const newNode = new ListNode(value);
+    const newNode = new SinglyLinkedListNode(value);
 
     newNode.next = this.head;
     if (this.size === 0) {

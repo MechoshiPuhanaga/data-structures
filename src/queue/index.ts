@@ -1,5 +1,5 @@
-class Node<T> {
-  next: Node<T> | null;
+export class QueueNode<T> {
+  next: QueueNode<T> | null;
   value: T;
 
   constructor(value: T) {
@@ -9,8 +9,8 @@ class Node<T> {
 }
 
 export class Queue<T> {
-  head: Node<T> | null;
-  tail: Node<T> | null;
+  private head: QueueNode<T> | null;
+  private tail: QueueNode<T> | null;
   size: number;
 
   constructor() {
@@ -72,7 +72,7 @@ export class Queue<T> {
    * @returns {number}
    */
   enqueue(value: T): number {
-    const newNode = new Node<T>(value);
+    const newNode = new QueueNode<T>(value);
 
     if (this.size === 0) {
       this.head = newNode;

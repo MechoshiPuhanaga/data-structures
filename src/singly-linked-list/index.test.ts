@@ -7,14 +7,12 @@ describe('SinglyLinkedList', () => {
     sll = new SinglyLinkedList<number>();
   });
 
-  test('Constrictor creates right instance', () => {
+  it('Constrictor creates right instance', () => {
     expect(sll).toBeInstanceOf(SinglyLinkedList);
-    expect(sll).toHaveProperty('head', null);
     expect(sll).toHaveProperty('size', 0);
-    expect(sll).toHaveProperty('tail', null);
   });
 
-  test('is iterable', () => {
+  it('is iterable', () => {
     sll.push(1);
     sll.push(2);
     sll.push(3);
@@ -22,25 +20,21 @@ describe('SinglyLinkedList', () => {
     expect([...sll]).toEqual([1, 2, 3]);
   });
 
-  test('static fromArray', () => {
+  it('static fromArray', () => {
     sll = SinglyLinkedList.fromArray([1, 2, 3]);
 
     expect(sll.toString()).toBe('1->2->3');
   });
 
-  test('push', () => {
+  it('push', () => {
     sll.push(1);
     expect(sll).toHaveProperty('size', 1);
-    expect(sll.head).toHaveProperty('value', 1);
-    expect(sll.tail).toHaveProperty('value', 1);
 
     sll.push(2);
     expect(sll).toHaveProperty('size', 2);
-    expect(sll.head).toHaveProperty('value', 1);
-    expect(sll.tail).toHaveProperty('value', 2);
   });
 
-  test('pop', () => {
+  it('pop', () => {
     sll.push(1);
     sll.push(2);
     sll.push(3);
@@ -48,58 +42,44 @@ describe('SinglyLinkedList', () => {
     let node = sll.pop();
     expect(node).toBe(3);
     expect(sll).toHaveProperty('size', 2);
-    expect(sll.head).toHaveProperty('value', 1);
-    expect(sll.tail).toHaveProperty('value', 2);
 
     node = sll.pop();
     expect(node).toBe(2);
     expect(sll).toHaveProperty('size', 1);
-    expect(sll.head).toHaveProperty('value', 1);
-    expect(sll.tail).toHaveProperty('value', 1);
 
     node = sll.pop();
     expect(node).toBe(1);
     expect(sll).toHaveProperty('size', 0);
-    expect(sll).toHaveProperty('head', null);
-    expect(sll).toHaveProperty('tail', null);
 
     node = sll.pop();
     expect(node).toBe(null);
   });
 
-  test('unshift', () => {
+  it('unshift', () => {
     sll.unshift(1);
     expect(sll).toHaveProperty('size', 1);
-    expect(sll.head).toHaveProperty('value', 1);
-    expect(sll.tail).toHaveProperty('value', 1);
 
     sll.unshift(2);
     expect(sll).toHaveProperty('size', 2);
-    expect(sll.head).toHaveProperty('value', 2);
-    expect(sll.tail).toHaveProperty('value', 1);
   });
 
-  test('shift', () => {
+  it('shift', () => {
     sll.unshift(1);
     sll.unshift(2);
 
     let node = sll.shift();
     expect(node).toBe(2);
     expect(sll).toHaveProperty('size', 1);
-    expect(sll.head).toHaveProperty('value', 1);
-    expect(sll.tail).toHaveProperty('value', 1);
 
     node = sll.shift();
     expect(node).toBe(1);
     expect(sll).toHaveProperty('size', 0);
-    expect(sll).toHaveProperty('head', null);
-    expect(sll).toHaveProperty('tail', null);
 
     node = sll.shift();
     expect(node).toBe(null);
   });
 
-  test('toString', () => {
+  it('toString', () => {
     sll.push(1);
     sll.push(2);
     sll.push(3);
@@ -108,7 +88,7 @@ describe('SinglyLinkedList', () => {
     expect(sll.toString()).toBe('1->2->3');
   });
 
-  test('get', () => {
+  it('get', () => {
     sll.push(1);
     sll.push(2);
     sll.push(3);
@@ -121,7 +101,7 @@ describe('SinglyLinkedList', () => {
     expect(sll.get(2)).toBe(3);
   });
 
-  test('insert', () => {
+  it('insert', () => {
     sll.push(1);
     sll.push(2);
     sll.push(3);
@@ -142,7 +122,7 @@ describe('SinglyLinkedList', () => {
     expect(sll.toString()).toBe('0->1->7->2->3->4');
   });
 
-  test('remove', () => {
+  it('remove', () => {
     sll.push(1);
     sll.push(2);
     sll.push(3);
@@ -160,7 +140,7 @@ describe('SinglyLinkedList', () => {
     expect(sll).toHaveProperty('size', 0);
   });
 
-  test('set', () => {
+  it('set', () => {
     sll.push(1);
     sll.push(2);
     sll.push(3);
@@ -169,15 +149,13 @@ describe('SinglyLinkedList', () => {
     expect(sll.set(7, 3)).toBe(false);
 
     expect(sll.set(7, 2)).toBe(true);
-    expect(sll.tail).toHaveProperty('value', 7);
 
     expect(sll.set(7, 0)).toBe(true);
-    expect(sll.head).toHaveProperty('value', 7);
 
     expect(sll).toHaveProperty('size', 3);
   });
 
-  test('reverse', () => {
+  it('reverse', () => {
     sll.push(1);
     expect(sll.reverse().toString()).toBe('1');
 

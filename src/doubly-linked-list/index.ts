@@ -1,6 +1,6 @@
-class ListNode<T> {
-  next: ListNode<T> | null;
-  prev: ListNode<T> | null;
+export class DoublyLinkedListNode<T> {
+  next: DoublyLinkedListNode<T> | null;
+  prev: DoublyLinkedListNode<T> | null;
   value: T;
 
   constructor(value: T) {
@@ -11,8 +11,8 @@ class ListNode<T> {
 }
 
 export class DoublyLinkedList<T> {
-  head: ListNode<T> | null;
-  tail: ListNode<T> | null;
+  private head: DoublyLinkedListNode<T> | null;
+  private tail: DoublyLinkedListNode<T> | null;
   size: number;
 
   constructor() {
@@ -65,7 +65,7 @@ export class DoublyLinkedList<T> {
    *
    * @returns {ListNode<T> | null}
    */
-  private getNode(index: number): ListNode<T> | null {
+  private getNode(index: number): DoublyLinkedListNode<T> | null {
     if (index < 0 || index > this.size - 1 || this.size === 0) {
       return null;
     }
@@ -131,7 +131,7 @@ export class DoublyLinkedList<T> {
 
     const previous = this.getNode(index - 1);
 
-    const newNode = new ListNode<T>(value);
+    const newNode = new DoublyLinkedListNode<T>(value);
     newNode.next = previous?.next ?? null;
 
     if (previous?.next) {
@@ -190,7 +190,7 @@ export class DoublyLinkedList<T> {
    * @returns {number} - the updated size of the list
    */
   public push(value: T): number {
-    const newNode = new ListNode(value);
+    const newNode = new DoublyLinkedListNode(value);
 
     if (this.size === 0) {
       this.head = newNode;
@@ -376,7 +376,7 @@ export class DoublyLinkedList<T> {
    * @returns {number} - the updated size of the list
    */
   public unshift(value: T): number {
-    const newNode = new ListNode(value);
+    const newNode = new DoublyLinkedListNode(value);
 
     newNode.next = this.head;
     if (this.head) {

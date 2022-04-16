@@ -1,5 +1,5 @@
-class Node<T> {
-  next: Node<T> | null;
+export class StackNode<T> {
+  next: StackNode<T> | null;
   value: T;
 
   constructor(value: T) {
@@ -9,7 +9,7 @@ class Node<T> {
 }
 
 export class Stack<T> {
-  head: Node<T> | null;
+  private head: StackNode<T> | null;
   size: number;
 
   constructor() {
@@ -63,7 +63,7 @@ export class Stack<T> {
    * @returns {number}
    */
   push(value: T): number {
-    const newNode = new Node<T>(value);
+    const newNode = new StackNode<T>(value);
 
     newNode.next = this.head;
     this.head = newNode;

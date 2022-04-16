@@ -7,14 +7,12 @@ describe('DoublyLinkedList', () => {
     dll = new DoublyLinkedList<number>();
   });
 
-  test('Constrictor creates right instance', () => {
+  it('Constrictor creates right instance', () => {
     expect(dll).toBeInstanceOf(DoublyLinkedList);
-    expect(dll).toHaveProperty('head', null);
     expect(dll).toHaveProperty('size', 0);
-    expect(dll).toHaveProperty('tail', null);
   });
 
-  test('is iterable', () => {
+  it('is iterable', () => {
     dll.push(1);
     dll.push(2);
     dll.push(3);
@@ -22,25 +20,21 @@ describe('DoublyLinkedList', () => {
     expect([...dll]).toEqual([1, 2, 3]);
   });
 
-  test('static fromArray', () => {
+  it('static fromArray', () => {
     dll = DoublyLinkedList.fromArray([1, 2, 3]);
 
     expect(dll.toString()).toBe('1<>2<>3');
   });
 
-  test('push', () => {
+  it('push', () => {
     dll.push(1);
     expect(dll).toHaveProperty('size', 1);
-    expect(dll.head).toHaveProperty('value', 1);
-    expect(dll.tail).toHaveProperty('value', 1);
 
     dll.push(2);
     expect(dll).toHaveProperty('size', 2);
-    expect(dll.head).toHaveProperty('value', 1);
-    expect(dll.tail).toHaveProperty('value', 2);
   });
 
-  test('pop', () => {
+  it('pop', () => {
     dll.push(1);
     dll.push(2);
     dll.push(3);
@@ -48,58 +42,44 @@ describe('DoublyLinkedList', () => {
     let node = dll.pop();
     expect(node).toBe(3);
     expect(dll).toHaveProperty('size', 2);
-    expect(dll.head).toHaveProperty('value', 1);
-    expect(dll.tail).toHaveProperty('value', 2);
 
     node = dll.pop();
     expect(node).toBe(2);
     expect(dll).toHaveProperty('size', 1);
-    expect(dll.head).toHaveProperty('value', 1);
-    expect(dll.tail).toHaveProperty('value', 1);
 
     node = dll.pop();
     expect(node).toBe(1);
     expect(dll).toHaveProperty('size', 0);
-    expect(dll).toHaveProperty('head', null);
-    expect(dll).toHaveProperty('tail', null);
 
     node = dll.pop();
     expect(node).toBe(null);
   });
 
-  test('unshift', () => {
+  it('unshift', () => {
     dll.unshift(1);
     expect(dll).toHaveProperty('size', 1);
-    expect(dll.head).toHaveProperty('value', 1);
-    expect(dll.tail).toHaveProperty('value', 1);
 
     dll.unshift(2);
     expect(dll).toHaveProperty('size', 2);
-    expect(dll.head).toHaveProperty('value', 2);
-    expect(dll.tail).toHaveProperty('value', 1);
   });
 
-  test('shift', () => {
+  it('shift', () => {
     dll.unshift(1);
     dll.unshift(2);
 
     let node = dll.shift();
     expect(node).toBe(2);
     expect(dll).toHaveProperty('size', 1);
-    expect(dll.head).toHaveProperty('value', 1);
-    expect(dll.tail).toHaveProperty('value', 1);
 
     node = dll.shift();
     expect(node).toBe(1);
     expect(dll).toHaveProperty('size', 0);
-    expect(dll).toHaveProperty('head', null);
-    expect(dll).toHaveProperty('tail', null);
 
     node = dll.shift();
     expect(node).toBe(null);
   });
 
-  test('toString', () => {
+  it('toString', () => {
     dll.push(1);
     dll.push(2);
     dll.push(3);
@@ -108,7 +88,7 @@ describe('DoublyLinkedList', () => {
     expect(dll.toString()).toBe('1<>2<>3');
   });
 
-  test('get', () => {
+  it('get', () => {
     dll.push(1);
     dll.push(2);
     dll.push(3);
@@ -121,7 +101,7 @@ describe('DoublyLinkedList', () => {
     expect(dll.get(2)).toBe(3);
   });
 
-  test('insert', () => {
+  it('insert', () => {
     dll.push(1);
     dll.push(2);
     dll.push(3);
@@ -142,7 +122,7 @@ describe('DoublyLinkedList', () => {
     expect(dll.toString()).toBe('0<>1<>7<>2<>3<>4');
   });
 
-  test('remove', () => {
+  it('remove', () => {
     dll.push(1);
     dll.push(2);
     dll.push(3);
@@ -160,7 +140,7 @@ describe('DoublyLinkedList', () => {
     expect(dll).toHaveProperty('size', 0);
   });
 
-  test('set', () => {
+  it('set', () => {
     dll.push(1);
     dll.push(2);
     dll.push(3);
@@ -169,15 +149,13 @@ describe('DoublyLinkedList', () => {
     expect(dll.set(7, 3)).toBe(false);
 
     expect(dll.set(7, 2)).toBe(true);
-    expect(dll.tail).toHaveProperty('value', 7);
 
     expect(dll.set(7, 0)).toBe(true);
-    expect(dll.head).toHaveProperty('value', 7);
 
     expect(dll).toHaveProperty('size', 3);
   });
 
-  test('reverse', () => {
+  it('reverse', () => {
     dll.push(1);
     expect(dll.reverse().toString()).toBe('1');
 

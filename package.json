@@ -1,6 +1,6 @@
 {
   "name": "@mechoshi/data-structures",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Collection of data structures",
   "main": "lib/cjs/index.js",
   "module": "lib/index.js",
@@ -14,7 +14,7 @@
   "private": false,
   "scripts": {
     "build": "rollup -c",
-    "doc": "typedoc",
+    "docs": "typedoc src/index.ts",
     "lint": "eslint \"src/**/*.ts\"",
     "start": "nodemon --exec ts-node -r tsconfig-paths/register ./playground.ts",
     "test": "jest",
