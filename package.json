@@ -9,6 +9,7 @@
     "lib/**/*"
   ],
   "repository": "git@github.com:MechoshiPuhanaga/data-structures.git",
+  "homepage": "https://mechoshipuhanaga.github.io/data-structures/",
   "author": "Mechoshi Puhanaga",
   "license": "MIT",
   "private": false,
