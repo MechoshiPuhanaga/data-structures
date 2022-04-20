@@ -1,6 +1,6 @@
 {
   "name": "@mechoshi/data-structures",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Collection of TypeScript data structures",
   "keywords": [
     "binary heap",

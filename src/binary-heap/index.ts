@@ -180,6 +180,7 @@ export class BinaryHeap<T> {
    * Time complexity: O(n)
    * Space complexity: O(n)
    *
+   *@returns {string}
    */
   public toString(): string {
     return `BinaryHeap ${this.values.toString()}`;
