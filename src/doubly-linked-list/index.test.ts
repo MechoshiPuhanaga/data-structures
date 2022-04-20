@@ -23,7 +23,7 @@ describe('DoublyLinkedList', () => {
   it('static fromArray', () => {
     dll = DoublyLinkedList.fromArray([1, 2, 3]);
 
-    expect(dll.toString()).toBe('1<>2<>3');
+    expect(dll.toString()).toBe('1<->2<->3');
   });
 
   it('push', () => {
@@ -85,7 +85,7 @@ describe('DoublyLinkedList', () => {
     dll.push(3);
 
     expect(dll).toHaveProperty('size', 3);
-    expect(dll.toString()).toBe('1<>2<>3');
+    expect(dll.toString()).toBe('1<->2<->3');
   });
 
   it('get', () => {
@@ -111,15 +111,15 @@ describe('DoublyLinkedList', () => {
 
     expect(dll.insert(4, 3)).toBe(true);
     expect(dll).toHaveProperty('size', 4);
-    expect(dll.toString()).toBe('1<>2<>3<>4');
+    expect(dll.toString()).toBe('1<->2<->3<->4');
 
     expect(dll.insert(0, 0)).toBe(true);
     expect(dll).toHaveProperty('size', 5);
-    expect(dll.toString()).toBe('0<>1<>2<>3<>4');
+    expect(dll.toString()).toBe('0<->1<->2<->3<->4');
 
     expect(dll.insert(7, 2)).toBe(true);
     expect(dll).toHaveProperty('size', 6);
-    expect(dll.toString()).toBe('0<>1<>7<>2<>3<>4');
+    expect(dll.toString()).toBe('0<->1<->7<->2<->3<->4');
   });
 
   it('remove', () => {
@@ -164,9 +164,9 @@ describe('DoublyLinkedList', () => {
     dll.push(4);
     dll.push(5);
 
-    expect(dll.toString()).toBe('1<>2<>3<>4<>5');
+    expect(dll.toString()).toBe('1<->2<->3<->4<->5');
 
     dll.reverse();
-    expect(dll.toString()).toBe('5<>4<>3<>2<>1');
+    expect(dll.toString()).toBe('5<->4<->3<->2<->1');
   });
 });

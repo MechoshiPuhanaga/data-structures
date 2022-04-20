@@ -1,21 +1,17 @@
-export class QueueNode<T> {
-  next: QueueNode<T> | null;
-  value: T;
-
-  constructor(value: T) {
-    this.next = null;
-    this.value = value;
-  }
-}
+import { SinglyLinkedNode } from '../nodes';
 
 export class Queue<T> {
-  private head: QueueNode<T> | null;
-  private tail: QueueNode<T> | null;
+  private head: SinglyLinkedNode<T> | null;
+
+  private tail: SinglyLinkedNode<T> | null;
+
   size: number;
 
   constructor() {
     this.head = null;
+
     this.size = 0;
+
     this.tail = null;
   }
 
@@ -27,6 +23,7 @@ export class Queue<T> {
 
     while (current) {
       yield current.value;
+
       current = current.next;
     }
   }
@@ -48,11 +45,15 @@ export class Queue<T> {
         break;
       case 1:
         value = this.head?.value ?? null;
+
         this.head = null;
+
         this.tail = null;
+
         break;
       default:
         value = this.head?.value ?? null;
+
         this.head = this.head?.next ?? null;
     }
 
@@ -72,10 +73,11 @@ export class Queue<T> {
    * @returns {number}
    */
   enqueue(value: T): number {
-    const newNode = new QueueNode<T>(value);
+    const newNode = new SinglyLinkedNode<T>(value);
 
     if (this.size === 0) {
       this.head = newNode;
+
       this.tail = newNode;
     } else {
       if (this.tail) {
@@ -98,10 +100,12 @@ export class Queue<T> {
    */
   public toString(): string {
     let output = 'Queue <';
+
     let current = this.head;
 
     while (current) {
       output += current.value;
+
       current = current.next;
 
       if (current) {

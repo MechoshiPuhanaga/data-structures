@@ -1,13 +1,24 @@
 {
   "name": "@mechoshi/data-structures",
-  "version": "0.2.0",
-  "description": "Collection of data structures",
+  "version": "0.3.0",
+  "description": "Collection of TypeScript data structures",
+  "keywords": [
+    "binary heap",
+    "data structures",
+    "doubly linked list",
+    "linked list",
+    "singly linked list",
+    "stack",
+    "TypeScript",
+    "queue"
+  ],
   "main": "lib/cjs/index.js",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
     "lib/**/*"
   ],
+  "sideEffects": false,
   "repository": "git@github.com:MechoshiPuhanaga/data-structures.git",
   "homepage": "https://mechoshipuhanaga.github.io/data-structures/",
   "author": "Mechoshi Puhanaga",
@@ -21,14 +32,13 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
-  "sideEffects": false,
   "devDependencies": {
     "@rollup/plugin-commonjs": "21.1.0",
     "@rollup/plugin-json": "4.1.0",
     "@rollup/plugin-node-resolve": "13.2.1",
     "@types/jest": "27.4.1",
-    "@typescript-eslint/eslint-plugin": "5.19.0",
-    "@typescript-eslint/parser": "5.19.0",
+    "@typescript-eslint/eslint-plugin": "5.20.0",
+    "@typescript-eslint/parser": "5.20.0",
     "@zerollup/ts-transform-paths": "1.7.18",
     "eslint": "8.13.0",
     "eslint-config-prettier": "8.5.0",

@@ -1,19 +1,13 @@
-export class StackNode<T> {
-  next: StackNode<T> | null;
-  value: T;
-
-  constructor(value: T) {
-    this.next = null;
-    this.value = value;
-  }
-}
+import { SinglyLinkedNode } from '../nodes';
 
 export class Stack<T> {
-  private head: StackNode<T> | null;
+  private head: SinglyLinkedNode<T> | null;
+
   size: number;
 
   constructor() {
     this.head = null;
+
     this.size = 0;
   }
 
@@ -25,6 +19,7 @@ export class Stack<T> {
 
     while (current) {
       yield current.value;
+
       current = current.next;
     }
   }
@@ -45,6 +40,7 @@ export class Stack<T> {
     }
 
     const node = this.head;
+
     this.head = node?.next ?? null;
 
     this.size--;
@@ -60,12 +56,13 @@ export class Stack<T> {
    *
    * @param {T} value
    *
-   * @returns {number}
+   * @returns {number} the size of the queue
    */
   push(value: T): number {
-    const newNode = new StackNode<T>(value);
+    const newNode = new SinglyLinkedNode<T>(value);
 
     newNode.next = this.head;
+
     this.head = newNode;
 
     return ++this.size;
@@ -77,13 +74,16 @@ export class Stack<T> {
    * Time complexity: O(n)
    * Space complexity: O(n)
    *
+   *@returns {string}
    */
   public toString(): string {
     let output = 'Stack <';
+
     let current = this.head;
 
     while (current) {
       output += current.value;
+
       current = current.next;
 
       if (current) {

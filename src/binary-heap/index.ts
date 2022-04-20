@@ -3,7 +3,7 @@ import { swap } from '@helpers';
 import { Comparator } from '../types';
 
 export class BinaryHeap<T> {
-  private comparator: (a: T, b: T) => boolean;
+  private comparator: Comparator<T>;
 
   private values: T[];
 
@@ -12,7 +12,7 @@ export class BinaryHeap<T> {
   constructor(comparator: Comparator<T>) {
     if (typeof comparator !== 'function') {
       throw new Error(
-        `comparator should be function: Comparator<T> = (a: T, b: T) => boolean`
+        `Comparator must be a function: Comparator<T> = (a: T, b: T) => boolean`
       );
     }
 
@@ -24,45 +24,27 @@ export class BinaryHeap<T> {
   }
 
   /**
-
    * Returns the root element without
-
    * extracting it.
-
+   *
    * NB: Don't modify if it's an object
-
    *
-
    * Time complexity: O(1)
-
    * Space complexity: O(1)
-
    *
-
    * @returns {T | null}
-
    */
-
   public root(): T | null {
     return this.values[0] || null;
   }
 
   /**
-
-   * Finds the right spot of a newly
-
-   * added element
-
+   * Finds the right spot for a newly added element
    *
-
    * Time complexity: O(logN)
-
    * Space complexity: O(1)
-
    *
-
    */
-
   private bubbleUp(): void {
     let currentIndex = this.values.length - 1;
 
@@ -84,21 +66,12 @@ export class BinaryHeap<T> {
   }
 
   /**
-
-   * Find the right place of the temporary
-
-   * root. Used in extract method.
-
+   * Finds the right place for the temporary root
    *
-
    * Time complexity: O(logN)
-
    * Space complexity: O(1)
-
    *
-
    */
-
   private sinkDown(): void {
     const length = this.values.length;
 
@@ -150,23 +123,13 @@ export class BinaryHeap<T> {
   }
 
   /**
-
-   * Extract the root element and
-
-   * set a new one.
-
+   * Extract the root element and set a new one.
    *
-
    * Time complexity: O(logN)
-
    * Space complexity: O(1)
-
    *
-
    * @returns {T | null}
-
    */
-
   public extract(): T | null {
     let value = null;
 
@@ -193,23 +156,14 @@ export class BinaryHeap<T> {
   }
 
   /**
-
    * Add element to the heap
-
    *
-
    * Time complexity: O(logN)
-
    * Space complexity: O(1)
-
    *
-
    * @param {T} value
-
    *
-
-   * @returns {number}
-
+   * @returns {number} the size of the heap
    */
 
   public insert(value: T): number {
@@ -221,19 +175,12 @@ export class BinaryHeap<T> {
   }
 
   /**
-
    * Overrides the generic toString method
-
    *
-
    * Time complexity: O(n)
-
    * Space complexity: O(n)
-
    *
-
    */
-
   public toString(): string {
     return `BinaryHeap ${this.values.toString()}`;
   }

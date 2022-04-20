@@ -1,21 +1,17 @@
-export class SinglyLinkedListNode<T> {
-  next: SinglyLinkedListNode<T> | null;
-  value: T;
-
-  constructor(value: T) {
-    this.next = null;
-    this.value = value;
-  }
-}
+import { SinglyLinkedNode } from '../nodes';
 
 export class SinglyLinkedList<T> {
-  private head: SinglyLinkedListNode<T> | null;
-  private tail: SinglyLinkedListNode<T> | null;
+  private head: SinglyLinkedNode<T> | null;
+
+  private tail: SinglyLinkedNode<T> | null;
+
   size: number;
 
   constructor() {
     this.head = null;
+
     this.size = 0;
+
     this.tail = null;
   }
 
@@ -27,6 +23,7 @@ export class SinglyLinkedList<T> {
 
     while (current) {
       yield current.value;
+
       current = current.next;
     }
   }
@@ -46,9 +43,7 @@ export class SinglyLinkedList<T> {
   public static fromArray<P>(array: Array<P>): SinglyLinkedList<P> {
     const list = new SinglyLinkedList<P>();
 
-    array.forEach((value) => {
-      list.push(value);
-    });
+    array.forEach(list.push.bind(list));
 
     return list;
   }
@@ -63,14 +58,16 @@ export class SinglyLinkedList<T> {
    *
    * @returns {ListNode<T> | null}
    */
-  private getNode(index: number): SinglyLinkedListNode<T> | null {
+  private getNode(index: number): SinglyLinkedNode<T> | null {
     if (index < 0 || index > this.size - 1 || this.size === 0) {
       return null;
     }
 
     let current = this.head;
+
     while (index > 0) {
       current = current?.next ?? null;
+
       index--;
     }
 
@@ -88,9 +85,7 @@ export class SinglyLinkedList<T> {
    * @returns {T | null}
    */
   public get(index: number): T | null {
-    const node = this.getNode(index);
-
-    return node ? node.value : null;
+    return this.getNode(index)?.value ?? null;
   }
 
   /**
@@ -110,16 +105,21 @@ export class SinglyLinkedList<T> {
     }
 
     if (index === this.size) {
-      return !!this.push(value);
+      this.push(value);
+
+      return true;
     }
 
     if (index === 0) {
-      return !!this.unshift(value);
+      this.unshift(value);
+
+      return true;
     }
 
     const previous = this.getNode(index - 1);
 
-    const newNode = new SinglyLinkedListNode<T>(value);
+    const newNode = new SinglyLinkedNode<T>(value);
+
     newNode.next = previous?.next ?? null;
 
     if (previous?.next) {
@@ -142,17 +142,22 @@ export class SinglyLinkedList<T> {
   public pop(): T | null {
     if (this.size < 2) {
       const node = this.head;
+
       this.head = null;
+
       this.tail = null;
+
       this.size = Math.max(0, --this.size);
 
-      return node ? node.value : null;
+      return node?.value ?? null;
     } else {
       let current = this.head;
+
       let next = current?.next ?? null;
 
       while (next && next.next) {
         current = next;
+
         next = next.next;
       }
 
@@ -174,14 +179,16 @@ export class SinglyLinkedList<T> {
    * Time complexity: O(1)
    * Space complexity: O(1)
    *
-   * @param {T} - the value to be added
-   * @returns {number} - the updated size of the list
+   * @param {T} value
+   *
+   * @returns {number} the size of the list
    */
   public push(value: T): number {
-    const newNode = new SinglyLinkedListNode(value);
+    const newNode = new SinglyLinkedNode(value);
 
     if (this.size === 0) {
       this.head = newNode;
+
       this.tail = newNode;
     } else {
       if (this.tail) {
@@ -218,6 +225,7 @@ export class SinglyLinkedList<T> {
     }
 
     const previous = this.getNode(index - 1);
+
     const toBeRemoved = previous?.next ?? null;
 
     if (previous?.next) {
@@ -247,7 +255,9 @@ export class SinglyLinkedList<T> {
     }
 
     let previous = this.head;
+
     let current = previous?.next ?? null;
+
     let next = null;
 
     // Set up the tail:
@@ -290,6 +300,7 @@ export class SinglyLinkedList<T> {
 
     if (node) {
       node.value = value;
+
       return true;
     } else {
       return false;
@@ -297,7 +308,8 @@ export class SinglyLinkedList<T> {
   }
 
   /**
-   * Removes a node from the beginning of the list
+   * Removes a node from the beginning
+   * of the list
    *
    * Time complexity: O(1)
    * Space complexity: O(1)
@@ -309,7 +321,9 @@ export class SinglyLinkedList<T> {
 
     if (this.size < 2) {
       this.head = null;
+
       this.tail = null;
+
       this.size = 0;
     } else {
       this.head = this.head?.next ?? null;
@@ -321,7 +335,7 @@ export class SinglyLinkedList<T> {
       this.size--;
     }
 
-    return node ? node.value : null;
+    return node?.value ?? null;
   }
 
   /**
@@ -330,13 +344,16 @@ export class SinglyLinkedList<T> {
    * Time complexity: O(n)
    * Space complexity: O(n)
    *
+   * @returns {string}
    */
   public toString(): string {
     let output = '';
+
     let current = this.head;
 
     while (current) {
       output += current.value;
+
       current = current.next;
 
       if (current) {
@@ -353,10 +370,10 @@ export class SinglyLinkedList<T> {
    * Time complexity: O(1)
    * Space complexity: O(1)
    *
-   * @returns {number} - the updated size of the list
+   * @returns {number} the size of the list
    */
   public unshift(value: T): number {
-    const newNode = new SinglyLinkedListNode(value);
+    const newNode = new SinglyLinkedNode(value);
 
     newNode.next = this.head;
     if (this.size === 0) {

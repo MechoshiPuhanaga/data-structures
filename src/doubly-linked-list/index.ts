@@ -1,23 +1,17 @@
-export class DoublyLinkedListNode<T> {
-  next: DoublyLinkedListNode<T> | null;
-  prev: DoublyLinkedListNode<T> | null;
-  value: T;
-
-  constructor(value: T) {
-    this.next = null;
-    this.prev = null;
-    this.value = value;
-  }
-}
+import { DoublyLinkedNode } from '../nodes';
 
 export class DoublyLinkedList<T> {
-  private head: DoublyLinkedListNode<T> | null;
-  private tail: DoublyLinkedListNode<T> | null;
+  private head: DoublyLinkedNode<T> | null;
+
+  private tail: DoublyLinkedNode<T> | null;
+
   size: number;
 
   constructor() {
     this.head = null;
+
     this.size = 0;
+
     this.tail = null;
   }
 
@@ -29,6 +23,7 @@ export class DoublyLinkedList<T> {
 
     while (current) {
       yield current.value;
+
       current = current.next;
     }
   }
@@ -43,14 +38,11 @@ export class DoublyLinkedList<T> {
    * @param {Array<P>} array
    *
    * @returns {SinglyLinkedList<P>}
-   *
    */
   public static fromArray<P>(array: Array<P>): DoublyLinkedList<P> {
     const list = new DoublyLinkedList<P>();
 
-    array.forEach((value) => {
-      list.push(value);
-    });
+    array.forEach(list.push.bind(list));
 
     return list;
   }
@@ -65,7 +57,7 @@ export class DoublyLinkedList<T> {
    *
    * @returns {ListNode<T> | null}
    */
-  private getNode(index: number): DoublyLinkedListNode<T> | null {
+  private getNode(index: number): DoublyLinkedNode<T> | null {
     if (index < 0 || index > this.size - 1 || this.size === 0) {
       return null;
     }
@@ -74,14 +66,18 @@ export class DoublyLinkedList<T> {
 
     if (index < Math.floor(this.size / 2)) {
       current = this.head;
+
       while (index > 0) {
         current = current?.next ?? null;
+
         index--;
       }
     } else {
       current = this.tail;
+
       while (index < this.size - 1) {
         current = current?.prev ?? null;
+
         index++;
       }
     }
@@ -100,9 +96,7 @@ export class DoublyLinkedList<T> {
    * @returns {T | null}
    */
   public get(index: number): T | null {
-    const node = this.getNode(index);
-
-    return node ? node.value : null;
+    return this.getNode(index)?.value ?? null;
   }
 
   /**
@@ -122,24 +116,31 @@ export class DoublyLinkedList<T> {
     }
 
     if (index === this.size) {
-      return !!this.push(value);
+      this.push(value);
+
+      return true;
     }
 
     if (index === 0) {
-      return !!this.unshift(value);
+      this.unshift(value);
+
+      return true;
     }
 
     const previous = this.getNode(index - 1);
 
-    const newNode = new DoublyLinkedListNode<T>(value);
+    const newNode = new DoublyLinkedNode<T>(value);
+
     newNode.next = previous?.next ?? null;
 
     if (previous?.next) {
       previous.next.prev = newNode;
+
       previous.next = newNode;
     }
 
     newNode.prev = previous;
+
     this.size++;
 
     return true;
@@ -156,11 +157,14 @@ export class DoublyLinkedList<T> {
   public pop(): T | null {
     if (this.size < 2) {
       const node = this.head;
+
       this.head = null;
+
       this.tail = null;
+
       this.size = 0;
 
-      return node ? node.value : null;
+      return node?.value ?? null;
     } else {
       const node = this.tail;
 
@@ -186,14 +190,16 @@ export class DoublyLinkedList<T> {
    * Time complexity: O(1)
    * Space complexity: O(1)
    *
-   * @param {T} - the value to be added
-   * @returns {number} - the updated size of the list
+   * @param {T} value
+   *
+   * @returns {number} the size of the list
    */
   public push(value: T): number {
-    const newNode = new DoublyLinkedListNode(value);
+    const newNode = new DoublyLinkedNode(value);
 
     if (this.size === 0) {
       this.head = newNode;
+
       this.tail = newNode;
     } else {
       if (this.tail) {
@@ -201,6 +207,7 @@ export class DoublyLinkedList<T> {
       }
 
       newNode.prev = this.tail;
+
       this.tail = newNode;
     }
 
@@ -238,6 +245,7 @@ export class DoublyLinkedList<T> {
 
     if (node?.next) {
       node.next.prev = node.prev;
+
       node.next = null;
     }
 
@@ -264,7 +272,9 @@ export class DoublyLinkedList<T> {
     }
 
     let current = this.tail;
+
     let temp = null;
+
     let counter = this.size - 1;
 
     while (counter >= 0) {
@@ -279,11 +289,14 @@ export class DoublyLinkedList<T> {
       }
 
       current = temp;
+
       counter--;
     }
 
     const head = this.head;
+
     this.head = this.tail;
+
     this.tail = head;
 
     return this;
@@ -306,6 +319,7 @@ export class DoublyLinkedList<T> {
 
     if (node) {
       node.value = value;
+
       return true;
     } else {
       return false;
@@ -325,7 +339,9 @@ export class DoublyLinkedList<T> {
 
     if (this.size < 2) {
       this.head = null;
+
       this.tail = null;
+
       this.size = 0;
     } else {
       this.head = this.head?.next ?? null;
@@ -341,7 +357,7 @@ export class DoublyLinkedList<T> {
       this.size--;
     }
 
-    return node ? node.value : null;
+    return node?.value ?? null;
   }
 
   /**
@@ -350,17 +366,20 @@ export class DoublyLinkedList<T> {
    * Time complexity: O(n)
    * Space complexity: O(n)
    *
+   *@returns {string}
    */
   public toString(): string {
     let output = '';
+
     let current = this.head;
 
     while (current) {
       output += current.value;
+
       current = current.next;
 
       if (current) {
-        output += '<>';
+        output += '<->';
       }
     }
 
@@ -373,12 +392,13 @@ export class DoublyLinkedList<T> {
    * Time complexity: O(1)
    * Space complexity: O(1)
    *
-   * @returns {number} - the updated size of the list
+   * @returns {number} the size of the list
    */
   public unshift(value: T): number {
-    const newNode = new DoublyLinkedListNode(value);
+    const newNode = new DoublyLinkedNode(value);
 
     newNode.next = this.head;
+
     if (this.head) {
       this.head.prev = newNode;
     }
